@@ -1,0 +1,199 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+  {{title}}
+{% endblock %}
+
+{% block  css %} 
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="{%  static 'jobya/css/bootstrap.min.css' %}" type="text/css">
+
+    <!--Material Icon -->
+    <link rel="stylesheet" type="text/css" href="{%  static 'jobya/css/materialdesignicons.min.css' %}" />
+
+    <link rel="stylesheet" type="text/css" href="{%  static 'jobya/css/fontawesome.css' %}" />
+
+    <!-- selectize css -->
+    <link rel="stylesheet" type="text/css" href="{%  static 'jobya/css/selectize.css' %}" />
+
+    <link rel="stylesheet" type="text/css" href="{%  static 'jobya/css/nice-select.css' %}" />
+
+    <!-- Custom  Css -->
+    <link rel="stylesheet" type="text/css" href="{%  static 'jobya/css/style.css' %}" />
+
+{% endblock css  %}
+
+{% block content %}
+       <!-- JOB DETAILS START -->
+       <section class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h4 class="text-dark mb-3">{{job.title|upper}}</h4>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-8 col-md-7">
+                    <div class="job-detail border rounded p-4">
+                        <div class="job-detail-content">
+                            <img src="images/featured-job/img-4.png" alt="" class="img-fluid float-left mr-md-3 mr-2 mx-auto d-block">
+                            <div class="job-detail-com-desc overflow-hidden d-block">
+                                <h4 class="mb-2"><a href="#" class="text-dark">{{job.title}}</a></h4>
+                                <p class="text-muted mb-0"><i class="mdi mdi-link-variant mr-2"></i>{{job.company_name}}</p>
+                                <p class="text-muted mb-0"><i class="mdi mdi-map-marker mr-2"></i>{{job.location}} state, {{job.country}}.</p>
+                            </div>
+                        </div>
+
+                        <div class="job-detail-desc mt-4">
+                            <p class="text-muted mb-3">{{employer.description}}</p>
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="job-detail border rounded mt-2 p-4">
+                                <h5 class="text-dark mt-4">Job Description</h5>
+                                <div class="job-detail-desc">
+                                     <p class="text-muted mb-3">{{job.description}}</p>
+                                </div>
+                            </div>
+                        </div>  
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="job-detail border rounded mt-2 p-4">
+                                <h5 class="text-dark mt-4">Job Requirements</h5>
+                                <div class="job-detail-desc">
+                                     <p class="text-muted mb-3">{{job.requirements}}</p>
+                                </div>
+                            </div>
+                        </div>  
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="job-detail border rounded mt-2 p-4">
+                                {% if job.application_mode == 'Candidate should apply with noraml application form' %}
+                                
+                                {% else %}
+                                <h5 class=" mt-4">Method of Application</h5>
+                                {% endif %}
+                                <div class="job-detail-desc">
+                                    {% if job.application_mode == 'Candidate should apply with noraml application form' %}
+                                    <a href="{% url 'listings:application-form' slug=job.slug %}" class="btn btn-primary">Apply Now</a>
+                                    {% elif job.application_mode == 'Candidate should send email via company email address'%}
+                                     <p class="text-muted mb-3">Interested and qualified candidates should forward their CV to: <b>{{job.email}}</b>
+                                         using the position as subject of email.</p>
+                                    {% elif job.application_mode == 'Candidate should apply via company website' %}
+                                    <p class="text-muted mb-3">Interested and qualified? Go to {{job.website|urlize}} to apply</p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>  
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-5 mt-4 mt-sm-0">
+                    <div class="job-detail border rounded p-4">
+                        <h5 class="text-muted text-center pb-2"><i class="mdi mdi-map-marker mr-2"></i>Location</h5>
+
+                        <div class="job-detail-location pt-4 border-top">
+                            <div class="job-details-desc-item">
+                                <div class="float-left mr-2">
+                                    <i class="mdi mdi-bank text-muted"></i>
+                                </div>
+                                <p class="text-muted mb-2">: {{job.address}} {{job.location}} state, {{job.country}}.</p>
+                            </div>
+
+                            <div class="job-details-desc-item">
+                                <div class="float-left mr-2">
+                                    <i class="mdi mdi-email text-muted"></i>
+                                </div>
+                                <p class="text-muted mb-2">: {{job.email}}</p>
+                            </div>
+
+                            <div class="job-details-desc-item">
+                                <div class="float-left mr-2">
+                                    <i class="mdi mdi-web text-muted"></i>
+                                </div>
+                                <p class="text-muted mb-2">: {{job.website|urlizetrunc:30}}</p>
+                            </div>
+
+                            <div class="job-details-desc-item">
+                                <div class="float-left mr-2">
+                                    <i class="mdi mdi-cellphone-iphone text-muted"></i>
+                                </div>
+                                <p class="text-muted mb-2">: {{employer.user_id.phone_number}}</p>
+                            </div>
+
+                            <div class="job-details-desc-item">
+                                <div class="float-left mr-2">
+                                    <i class="mdi mdi-currency-ngn text-muted"></i>
+                                </div>
+                                <p class="text-muted mb-2">: {{job.min_salary}}-{{job.max_salary}}</p>
+                            </div>
+
+                            <div class="job-details-desc-item">
+                                <div class="float-left mr-2">
+                                    <i class="mdi mdi-security text-muted">Experience</i>
+                                </div>
+                                <p class="text-muted mb-2">: {{job.experience}}.</p>
+                            </div>
+
+                            <div class="job-details-desc-item">
+                                <div class="float-left mr-2">
+                                    <i class="mdi mdi-clock-outline text-muted">Posted on</i>
+                                </div>
+                                <p class="text-muted mb-2">: {{job.created_at|timesince}} ago</p>
+                            </div>
+                            <div class="job-details-desc-item">
+                                <div class="float-left mr-2">
+                                    <i class="mdi mdi-clock-outline text-muted">Deadline</i>
+                                </div>
+                                <p class="text-muted mb-2">: {{job.closed_at}} </p>
+                            </div>
+                            {% comment %} <a href="{% url 'listings:apply_page' slug=job.slug pk=job.id %}" class="btn btn-primary">Apply</a> {% endcomment %}
+                        </div>
+                    </div>
+
+                    <div class="job-detail border rounded p-4">
+                        <h5 class="text-muted text-center pb-2"><i class="mdi mdi-information mr-2"></i>Trending Jobs</h5>
+
+                        <div class="job-detail-location pt-4 border-top">
+                            <div class="job-details-desc-item">
+                                {% for recently_list_job in recently_list_jobs %}
+                                <div class="float-left mr-2">
+                                    <i class="mdi mdi-star text-muted"></i>
+                                </div>
+                            
+                                <p class="text-muted mb-2"><a href="{% url 'listings:job-detail' recently_list_job.slug %}">{{recently_list_job.title}} at {{recently_list_job.company_name}}</a> </p>
+                                
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+
+            
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- JOB DETAILS END -->
+{% endblock %}
+<!--Footer-->
+
+{% block js %}
+    <!-- javascript -->
+    <script src="{% static 'jobya/js/jquery.min.js' %}"></script>
+    <script src="{% static 'jobya/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'jobya/js/jquery.easing.min.js' %}"></script>
+    <script src="{% static 'jobya/js/plugins.js' %}"></script>
+
+    <!-- selectize js -->
+    <script src="{% static 'jobya/js/selectize.min.js' %}"></script>
+
+    <script src="{% static 'jobya/js/jquery.nice-select.min.js' %}"></script>
+
+    <script src="{% static 'jobya/js/app.js' %}"></script>
+{% endblock js %}

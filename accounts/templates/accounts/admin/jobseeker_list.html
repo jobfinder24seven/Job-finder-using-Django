@@ -1,0 +1,90 @@
+{% extends 'dashboard_base.html' %}
+{% load static %}
+    {% block title %}
+        Admin 
+    {% endblock %}
+    {% block breadcrumb_right_sidebar %}
+    <div class="col-5">
+        <h4 class="page-title">Dashboard</h4>
+        <div class="d-flex align-items-center">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'admin-home' %}">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page"><a href="{% url 'admin-jobseekers' %}">Jobseeker Account</a></li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    {% endblock  %}
+
+
+    {% block content %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.0/css/boxicons.min.css"
+                    integrity="sha512-pVCM5+SN2+qwj36KonHToF2p1oIvoU3bsqxphdOIWMYmgr4ZqD3t5DjKvvetKhXGc/ZG5REYTT6ltKfExEei/Q=="
+                    crossorigin="anonymous" referrerpolicy="no-referrer" />
+                <link rel="stylesheet"
+                    href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.css"
+                    integrity="sha256-NAxhqDvtY0l4xn+YVa6WjAcmd94NNfttjNsDmNatFVc=" crossorigin="anonymous" />
+
+        <!-- Container fluid  -->
+        <!-- ============================================================== -->
+        <div class="container-fluid">
+        <div class="row">
+                <!-- column -->
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <!-- title -->
+                            <div class="d-md-flex">
+                             
+                            </div>
+                            <!-- title -->
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table project-list-table table-nowrap align-middle table-borderless">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Candidate ID</th>
+                                        <th scope="col">Candidate Name</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Date Join</th>
+                                        <th scope="col">Action</th>
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for jobseeker in jobseeker_list %}
+                                        <tr>
+                                            <td>{{jobseeker.slug}}</td>
+                                            <td><img src="" alt=""
+                                                class="avatar-sm rounded-circle me-2" /><a href="" class="text-body">{{jobseeker.user_id.last_name}} {{jobseeker.user_id.first_name}}</a>
+                                            </td>
+
+                                            <td>{{jobseeker.user_id.email|urlize}}
+                                            </td>
+                                            
+                                            <td>{{jobseeker.created_at}}</td>
+
+
+                                            
+                                            <td>
+                                                <li class="list-inline-item">
+                                                    <a href="{% url 'jobseeker-profile' slug=jobseeker.slug %}" data-bs-toggle="tooltip"
+                                                        data-bs-placement="top" title="Edit" class="px-2 text-primary"><i
+                                                            class="bx bx-pencil font-size-18"></i></a>
+                                                </li>
+
+
+                                            </td> 
+
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    {% endblock %}

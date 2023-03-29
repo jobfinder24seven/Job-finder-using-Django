@@ -1,0 +1,161 @@
+{% extends 'dashboard_base.html' %}
+{% load static %}
+    {% block title %}
+       {{title}}
+    {% endblock %}
+
+    {% block breadcrumb_right_sidebar %}
+    <div class="col-5">
+        <h4 class="page-title">Dashboard</h4>
+        <div class="d-flex align-items-center">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'accounts:employer-home' %}">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page"><a href="{% url 'accounts:employer-billing' %}">Billings</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Make payment</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    {% endblock breadcrumb_right_sidebar %}
+
+        {% block content %}
+
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-xl px-4 mt-4">
+
+               
+                <hr class="mt-0 mb-4">
+                <div class="row">
+                    
+                    <div class="col-xl-8">
+
+                        <div class="card mb-4">
+                            <div class="card-header ">Note: You can pay online, via transfer or bank deposit</div>
+                            
+                            <div class="card-body ">
+                                <p>Wallet Funding for Job Posting and Candidate Search: <b>NGN {{payment.amount}} </b></p>
+                                <hr>
+                                <!--<form method="post" action="#"  enctype="multipart/form-data">-->
+                                {% comment %} <form> {% endcomment %}
+                                    
+
+                                    <!-- Pay Option -->
+                                    
+                                    <div class="row gx-3 mb-3">
+                                        <!-- Form Group (first name)-->
+                                        <div class="col-md-6">
+                                            <label class="small mb-1" for="inputFirstName">First name</label>
+                                            <input class="form-control" id="inputFirstName" name="first_name" type="text" placeholder="" value="{{payment.payment_by.user_id.first_name}}" readonly>
+                                        </div>
+                                        <!-- Form Group (last name)-->
+                                        <div class="col-md-6">
+                                            <label class="small mb-1" for="inputLastName">Last name</label>
+                                            <input class="form-control" id="inputLastName" name="last_name" type="text" placeholder="Enter your last name" value="{{payment.payment_by.user_id.last_name}}" readonly>
+                                        </div>
+                                    </div>
+
+                                    <!-- Form Row-->
+                                    <div class="row gx-3 mb-3">
+                                        <!-- Form Group (birthday)-->
+                                        <div class="col-md-12">
+                                            <label class="small mb-1" for="inputEmailAddress">Email address</label>
+                                        <input class="form-control" id="inputEmailAddress" name="email" type="email" placeholder="Enter your email address" value="{{payment.payment_by.user_id.email}}" readonly>
+                                        </div>
+                                    </div>
+                                    <!-- Save changes button--> 
+                                   
+                                    
+                                    <script src="https://js.paystack.co/v1/inline.js"></script> 
+                                    <button class="btn btn-primary" type="submit" onclick="payWithPayStack()" id="django-paystack-button">Make payement</button>
+                                    <b></b>
+                                    <p>Note: You can pay online, via transfer or bank deposit</p>
+                             
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <style type="text/css">
+
+                body {
+                    margin-top: 20px;
+                    background-color: #f2f6fc;
+                    color: #69707a;
+                }
+        
+                .img-account-profile {
+                    height: 10rem;
+                }
+        
+                .rounded-circle {
+                    border-radius: 50% !important;
+                }
+        
+                .card {
+                    box-shadow: 0 0.15rem 1.75rem 0 rgb(33 40 50 / 15%);
+                }
+        
+                .card .card-header {
+                    font-weight: 500;
+                }
+        
+                .card-header:first-child {
+                    border-radius: 0.35rem 0.35rem 0 0;
+                }
+        
+                .card-header {
+                    padding: 1rem 1.35rem;
+                    margin-bottom: 0;
+                    background-color: #7460ee;
+                    color: white;
+                    border-bottom: 1px solid rgba(33, 40, 50, 0.125);
+                }
+        
+                .form-control,
+                .dataTable-input {
+                    display: block;
+                    width: 100%;
+                    padding: 0.875rem 1.125rem;
+                    font-size: 0.875rem;
+                    font-weight: 400;
+                    line-height: 1;
+                    color: #69707a;
+                    background-color: #fff;
+                    background-clip: padding-box;
+                    border: 1px solid #c5ccd6;
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                    appearance: none;
+                    border-radius: 0.35rem;
+                    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+                }
+        
+                .nav-borders .nav-link.active {
+                    color: #0061f2;
+                    border-bottom-color: #0061f2;
+                }
+        
+                .nav-borders .nav-link {
+                    color: #69707a;
+                    border-bottom-width: 0.125rem;
+                    border-bottom-style: solid;
+                    border-bottom-color: transparent;
+                    padding-top: 0.5rem;
+                    padding-bottom: 0.5rem;
+                    padding-left: 0;
+                    padding-right: 0;
+                    margin-left: 1rem;
+                    margin-right: 1rem;
+                }
+            </style>
+            <script type="text/javascript">
+            {% include 'subscriptions/pay.js' %}
+            </script>
+
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+            
+        {% endblock %}

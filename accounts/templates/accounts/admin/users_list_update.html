@@ -1,0 +1,141 @@
+{% extends 'dashboard_base.html' %}
+{% load static %}
+    {% block title %}
+       {{title}}
+    {% endblock %}
+
+        {% block content %}
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-xl px-4 mt-4">
+
+                <hr class="mt-0 mb-4">
+                
+                <div class="row">
+                    <div class="col-lg-2">
+
+                    </div>
+                    <div class="col-lg-8">
+        
+                       <div class="card mb-4">
+                            <div class="card-header">Modify user {{user.slug}} profile</div>
+                            <div class="card-body">
+                                <form method="post" action="{% url 'admin-manage-user-update' slug=user.slug %}">
+                                    {% csrf_token %}
+                                    <div class="mb-3">
+                                        <label class="small mb-1" for="currentUsername">First Name</label>
+                                        <input class="form-control" id="currentUsername" name="first_name"type="text"
+                                             value="{{user.first_name}}" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="small mb-1" for="currentUsername">Last Name</label>
+                                        <input class="form-control" id="currentUsername" name="last_name"type="text"
+                                             value="{{user.last_name}}" required>
+                                    </div>
+        
+                                    <div class="mb-3">
+                                        <label class="small mb-1" for="newUsername">Email</label>
+                                        <input class="form-control" id="newUsername" name="email" type="text"
+                                        value="{{user.email}}" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="small mb-1" for="newUsername">phone</label>
+                                        <input class="form-control" id="newUsername" name="phone_number" type="text"
+                                        value="{{user.phone_number}}" required>
+                                    </div>
+                                    <button class="btn btn-primary" type="submit">Update</button>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-2">
+
+                    </div>
+                </div>
+            </div>
+            <style type="text/css">
+                body {
+                    margin-top: 20px;
+                    background-color: #f2f6fc;
+                    color: #69707a;
+                }
+        
+                .img-account-profile {
+                    height: 10rem;
+                }
+        
+                .rounded-circle {
+                    border-radius: 50% !important;
+                }
+        
+                .card {
+                    box-shadow: 0 0.15rem 1.75rem 0 rgb(33 40 50 / 15%);
+                }
+        
+                .card .card-header {
+                    font-weight: 500;
+                }
+        
+                .card-header:first-child {
+                    border-radius: 0.35rem 0.35rem 0 0;
+                }
+        
+                .card-header {
+                    padding: 1rem 1.35rem;
+                    margin-bottom: 0;
+                    background-color: #7460ee;
+                    color: white;
+                    border-bottom: 1px solid rgba(33, 40, 50, 0.125);
+                }
+        
+                .form-control,
+                .dataTable-input {
+                    display: block;
+                    width: 100%;
+                    padding: 0.875rem 1.125rem;
+                    font-size: 0.875rem;
+                    font-weight: 400;
+                    line-height: 1;
+                    color: #69707a;
+                    background-color: #fff;
+                    background-clip: padding-box;
+                    border: 1px solid #c5ccd6;
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                    appearance: none;
+                    border-radius: 0.35rem;
+                    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+                }
+        
+                .nav-borders .nav-link.active {
+                    color: #0061f2;
+                    border-bottom-color: #0061f2;
+                }
+        
+                .nav-borders .nav-link {
+                    color: #69707a;
+                    border-bottom-width: 0.125rem;
+                    border-bottom-style: solid;
+                    border-bottom-color: transparent;
+                    padding-top: 0.5rem;
+                    padding-bottom: 0.5rem;
+                    padding-left: 0;
+                    padding-right: 0;
+                    margin-left: 1rem;
+                    margin-right: 1rem;
+                }
+        
+                .btn-danger-soft {
+                    color: #000;
+                    background-color: #f1e0e3;
+                    border-color: #f1e0e3;
+                }
+            </style>
+            <script type="text/javascript">
+        
+            </script>
+
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+        {% endblock %}

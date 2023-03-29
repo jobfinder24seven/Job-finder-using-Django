@@ -1,0 +1,624 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% load static %}
+    {% block title %}
+    {{title}}
+    {% endblock title %}
+
+{% block content %}
+<!-- ======= Hero Section ======= -->
+<section id="hero" class="d-flex align-items-center">
+  <div class="container" data-aos="zoom-out" data-aos-delay="100">
+    <h1 style="line-height: 70px; color: #fff;">Hire Smarter, Faster, and <br> More Efficiently<br><span
+        style=" color:#fff;"></span></h1>
+    <div style="width: 600px;">
+      <!---<h2>Ready to post a job? Get started with Jobfinder, where you can post an open role in minutes. Jobs you pay to post on jobfinder will also appear on Placement-Hub.</h2>-->
+      <h2 style="font-size: 17px; line-height: 25px;color:#fff;">Job Finder provides employers with a powerful,
+        innovative and easy to<br> use solution to find their next top candidate. Job Finder is a matchmaking
+        <br>website that helps you find your next employee by drawing from our <br> pool of talented candidates.</h2>
+    </div>
+
+    <div class="d-flex">
+      <a href="{% url 'accounts:employer-signup' %}" class="btn-get-started scrollto">Get Started</a>
+
+    </div>
+  </div>
+</section>
+<!-- End Hero -->
+<!--main-->
+<main id="main">
+  <!-- ======= Features Services Section ======= -->
+  <section id="featured-services" class="featured-services">
+    <div class="container" data-aos="fade-up">
+      <!---<p style="text-align: center; color: #106eea;">HOW IT WORKS</p>-->
+      <h3 style="text-align: center;">Find Your Dream Team <span style="color: #d476dd;">- With Job Finder</span></h3>
+      <p style="text-align: center;">find best candidates on Job Finder - the top job site</p>
+      <div class="row">
+        <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+          <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
+            <div class="icon"><i class="bx bxl-dribbble"></i></div>
+            <h4 class="title"><a href="">Quality Candidates</a></h4>
+            <p class="description"> Jobfinder help recruit and hire top quality employees for companies.</p>
+          </div>
+        </div>
+
+
+        <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+          <div class="icon-box" data-aos="fade-up" data-aos-delay="300">
+            <div class="icon"><i class="bx bx-world"></i></div>
+            <h4 class="title"><a href="">Technology Driven</a></h4>
+            <p class="description">Our AI-powered system will match you with the best qualified candidates from our
+              database.</p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+          <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
+            <div class="icon"><i class="bx bx-tachometer"></i></div>
+            <h4 class="title"><a href="">Time-saving</a></h4>
+            <p class="description">With Job Finder, you can quickly find and hire top quality employees for your
+              company, saving you time and money.</p>
+          </div>
+        </div>
+
+
+
+        <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+          <div class="icon-box" data-aos="fade-up" data-aos-delay="400">
+            <div class="icon"><i class="bx bx-file"></i></div>
+            <h4 class="title"><a href="">Excellent Delivery</a></h4>
+            <p class="description">We give you great value for your time and money.</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+  <!-- End Features Services Section -->
+
+
+
+  <!-- ======= About Us Section ======= -->
+  <section id="about" class="about section-bg" style="background-color:#fff;">
+    <div class="container" data-aos="fade-up">
+
+
+
+      <div class="row">
+        <div class="col-lg-6" data-aos="fade-right" data-aos-delay="100">
+          <img src="{% static 'main/assets/img/about-us-page.jpg' %}" class="img-fluid" alt="">
+          <img src="{% static 'main/assets/img/about-post.jpg' %}" class="img-fluid" alt="">
+        </div>
+        <div class="col-lg-6 pt-4 pt-lg-0 content d-flex flex-column justify-content-center" data-aos="fade-up"
+          data-aos-delay="100">
+          <div class="section-title" style="margin-left: -520px;">
+            <h2>About Us</h2>
+
+          </div>
+          <h3 style="font-size: 42px;">Find the Right Talent for <br> Your Business</h3>
+          <p style="font-size: 17px; line-height: 35px;">
+            Job Finder is a recruitment company that helps businesses find the top quality employees they need. We have
+            a team of experienced professionals who know how to assess a candidate's skills and qualifications.
+            We also use the latest technology to screen candidates so that you can be sure you're getting the best
+            possible pool of applicants.We understand that the hiring process can be time-consuming and frustrating, so
+            we strive to make it as easy and efficient as possible for our clients. We're here to help you find the
+            right employees for your company, and we'll work with you every step of the way to ensure a smooth and
+            successful process.
+          </p>
+
+          <div class="d-flex">
+            <p>
+              <span></span>&nbsp;&nbsp;&nbsp;&nbsp;
+              <a href="{% url 'accounts:employer-signup' %}" class="btn-get-started btn btn-primary scrollto"
+                style="width: 200px; height: 50px; font-size: 24px; left:0;">Get Started</a>
+            </p>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section><!-- End About Us Section -->
+
+
+  <!-- ======= Let Recruit Section ======= -->
+  <section id="about" class="about section-bg" style="background-color:#f6f9fe;">
+    <div class="container" data-aos="fade-up">
+      <div class="row">
+
+        <div class="col-lg-6 pt-4 pt-lg-0 content d-flex flex-column justify-content-center" data-aos="fade-up"
+          data-aos-delay="100">
+          <h3 style="color: #000; font-size: 38px; line-height: 50px;">Let's Recruit Top Quality Employee <br>for your
+            Company</h3>
+          <p class="fst-italic" style="color: #000;">
+            We understands the importance of finding the best employees for your company. Our team of recruiters will
+            assist you in any and all aspects of recruitment, from advertisement to screening.
+          </p>
+          <div class="d-flex">
+            <a href="{% url 'accounts:employer-signup' %}" class="btn-get-started btn btn-primary scrollto">Get Started</a>
+
+          </div>
+        </div>
+
+        <div class="col-lg-6" data-aos="fade-right" data-aos-delay="100">
+          <img src="{% static 'main/assets/img/Top-quality-removebg-preview.png' %}" class="img-fluid" alt="">
+        </div>
+
+      </div>
+
+    </div>
+  </section><!-- End Let Recruit Section -->
+
+
+
+  <!-- ======= Featured Job Posting Section ======= -->
+  <section id="about" class="about section-bg" style="background-color:#fff;">
+    <div class="container" data-aos="fade-up">
+
+      <div class="section-title">
+        <h2>Featured</h2>
+
+      </div>
+
+      <div class="row">
+        <div class="col-lg-6" data-aos="fade-right" data-aos-delay="100">
+          <img src="{% static 'main/assets/img/about.jpg' %}" class="img-fluid" alt="">
+        </div>
+        <div class="col-lg-6 pt-4 pt-lg-0 content d-flex flex-column justify-content-center" data-aos="fade-up"
+          data-aos-delay="100">
+          <h3>Featured Job Posting.</h3>
+          <p class="fst-italic">
+            With featured job posting, you get x3 visibility on your job advert as we will feature it on our website
+            home page plus other premium locations.
+            We simply ensure that the right candidates get to see and apply for your positions.
+          </p>
+          <ul>
+            <li>
+              <i class="bx bx-store-alt"></i>
+              <div>
+                <h5>SCREENING QUESTIONS:</h5>
+                <p>Our screening question feature enables you to set some questions while posting your job.
+                  The system will filter most qualified candidates for your job advert.</p>
+              </div>
+            </li>
+            <li>
+              <i class="bx bx-images"></i>
+              <div>
+                <h5>ONLINE ASSEMENT</h5>
+                <p></p>Our assessment feature will help you to easily identify qualified candidates for the role.
+                We have prebuilt assessments for you to choose from.</p>
+              </div>
+            </li>
+          </ul>
+          <div class="d-flex">
+            <p>
+              <span>
+                <h2 style="font-size: 25px; color: #d476dd;margin-left: 55px;">NGN 5,000</h2> / job role
+              </span>&nbsp;&nbsp;&nbsp;&nbsp;
+              <a href="{% url 'accounts:employer-signup' %}" class="btn-get-started btn btn-primary scrollto">Get Started</a>
+            </p>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section><!-- End Featured Job Posting Section -->
+
+
+
+
+  <!-- ======= Candidate Search Section ======= -->
+  <section id="about" class="about section-bg" style="background-color:#f6f9fe;">
+    <div class="container" data-aos="fade-up">
+      <div class="row">
+        <div class="col-lg-6" data-aos="fade-right" data-aos-delay="100">
+          <img src="{% static 'main/assets/img/plac.png' %}" class="img-fluid" alt="">
+        </div>
+
+        <div class="col-lg-6 pt-4 pt-lg-0 content d-flex flex-column justify-content-center" data-aos="fade-up"
+          data-aos-delay="100">
+          <h3>Candidate Search</h3>
+          <p class="fst-italic">
+            Handle your recruitment process by yourself.
+            Search and select the most qualified candidates from our database of active jobseekers.
+          </p>
+          <ul>
+            <li>
+              <p
+                style="font-size: 18px; background-color: #d476dd; color: white; border-radius: 45px; width: 20px; text-align: center;">
+                <em> 1.</em> </p>
+              <div>
+
+                <p>&nbsp;&nbsp; Enter your company information and the type of employee you are looking for.</p>
+              </div>
+            </li>
+            <li>
+              <p
+                style="font-size: 18px; background-color: #d476dd; color: white; border-radius: 45px; width: 20px; text-align: center;">
+                <em> 2.</em> </p>
+              <div>
+
+                <p>&nbsp;&nbsp;You can review the candidate's information and decide whether to hire them.</p>
+              </div>
+
+            </li>
+            <li>
+              <p
+                style="font-size: 18px; background-color: #d476dd; color: white; border-radius: 45px; width: 20px; text-align: center;">
+                <em> 3.</em> </p>
+              <div>
+
+                <p>&nbsp;&nbsp;Send them direct message at no cost.</p>
+              </div>
+            </li>
+            <li>
+              <p
+                style="font-size: 18px; background-color: #d476dd; color: white; border-radius: 45px; width: 20px; text-align: center;">
+                <em> 4.</em> </p>
+              <div>
+
+                <p>&nbsp;&nbsp;View their contact details at ₦1,000 per candidate.</p>
+              </div>
+
+            </li>
+            <div class="d-flex">
+              {% if user.is_authenticated %}
+              <a href="{% url 'listings:job-form' %}" class="btn-get-started btn btn-primary scrollto">Get Started</a>
+              {% else %}
+              <a href="{% url 'accounts:employer-signup' %}" class="btn-get-started btn btn-primary scrollto">Get Started</a>
+              {% endif %}
+
+            </div>
+          </ul>
+
+        </div>
+
+
+
+      </div>
+
+    </div>
+  </section><!-- End Candidate Search Section -->
+
+  <!-- ======= Shortlisting Section ======= -->
+  <section id="services" class="services">
+    <div class="container" data-aos="fade-up">
+
+      <div class="section-title">
+        <h2>Shortlisting</h2>
+        <h3>Shortlisting <span>Service</span></h3>
+        <p>Our shortlist service saves you the man hours spent going through a heap of CVs. With the right blend of
+          technology and human expertise we get you a perfect shortlist of interested candidates that are worth your
+          time.</p>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+          <div class="icon-box">
+            <div class="icon">
+              <p
+                style="font-size: 18px; background-color: #3b8af2; color: white; border-radius: 45px; width: 20px; text-align: center;">
+                <em> 1 </em> </p>
+            </div>
+
+            <p>We understand your job description and requirements</p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
+          <div class="icon-box">
+            <div class="icon">
+              <p
+                style="font-size: 18px; background-color: #3b8af2; color: white; border-radius: 45px; width: 20px; text-align: center;">
+                <em> 2 </em> </p>
+            </div>
+
+            <p>We shortlist the candidates from a CV perspective</p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="300">
+          <div class="icon-box">
+            <div class="icon">
+              <p
+                style="font-size: 18px; background-color: #3b8af2; color: white; border-radius: 45px; width: 20px; text-align: center;">
+                <em> 3 </em> </p>
+            </div>
+
+            <p>We conduct phone interviews to confirm availability along other claims that can be verified via a phone
+              call.</p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="100">
+          <div class="icon-box">
+            <div class="icon">
+              <p
+                style="font-size: 18px; background-color: #3b8af2; color: white; border-radius: 45px; width: 20px; text-align: center;">
+                <em> 4 </em> </p>
+            </div>
+
+            <p>We send you 9 candidates that are worth your time for your approval.</p>
+          </div>
+        </div>
+        <div class="section-title">
+          <h2><span>
+              <h2 style="font-size: 25px; color: #d476dd;">NGN 50,000</h2>/job role
+            </span>
+
+          </h2>
+
+          <br>
+          <p style=" color: blue; font-size: 20px;">
+            <a href="{% url 'accounts:employer-signup' %}" style="color:#106eea;">Get Started</a>
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section><!-- End Shortlisting Section -->
+
+
+
+
+  <!-- ======= Pricing Section ======= -->
+  <section id="pricing" class="pricing">
+    <div class="container" data-aos="fade-up">
+
+      <div class="section-title">
+        <h2>Our Services options</h2>
+        <h3>Choose the best recruitment option that <span>works for you</span></h3>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="box">
+            <h3>Featured Job Posting</h3>
+            <h4><sup>₦</sup>5,000<span> / job role</span><br />
+              <span style="color: #c6c6c6;">Maximum visibility for your job post</span>
+            </h4>
+            <ul>
+              <li>Enjoy increased candidate reach via diverse channels - website, email, partner websites and social
+                media.
+              </li>
+              <li>Receive applications via your email, website or on JobFinder.</li>
+              <li>Set custom screening / assessment questions for quick filteringHave your advert live in less than 6
+                hours.</li>
+              <li>You can be anonymous.</li>
+
+            </ul>
+            <div class="btn-wrap">
+              <a href="#" class="btn-buy">Post a Job</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 mt-4 mt-md-0" data-aos="fade-up" data-aos-delay="200">
+          <div class="box featured">
+            <h3>Shortlisting</h3>
+            <h4><sup>₦</sup>50,000<span> / job role</span><br />
+              <span style="color: #c6c6c6;"> Fast-forward your recruitmentt</span>
+            </h4>
+            <ul>
+              <li>We understand your job description and requirements
+              </li>
+              <li>We source for candidates that match your requirements</li>
+              <li>We shortlist the candidates from a CV perspective</li>
+              <li>We conduct phone interviews to confirm availability along other claims that can be verified via a
+                phone call.</li>
+              <li>We send you 9 candidates that are worth your time for your approval.</li>
+              <li>You have an Account Manager to support you throughout the process.</li>
+
+
+            </ul>
+            <div class="btn-wrap">
+              <a href="#" class="btn-buy">Order</a>
+            </div>
+          </div>
+        </div>
+
+
+
+        <div class="col-lg-4 col-md-6 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="400">
+          <div class="box">
+            <span class="advanced">Advanced</span>
+            <h3>Recruitment</h3>
+            <h4><sup>Call:</sup>0807 244 5395<br />
+              <span style="color: #c6c6c6;">We send you qualified candidates.</span>
+            </h4>
+            <ul>
+              <li>We use our network and resources to headhunt for the best candidates.
+              </li>
+              <li>We sell your Company to the candidates.</li>
+              <li>We interview the candidates</li>
+              <li>We send the candidates to you and work with you to get the best hand to grow your business.</li>
+
+            </ul>
+            <div class="btn-wrap">
+              <a href="#" class="btn-buy">Contact Us</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section><!-- End Pricing Section -->
+
+  <!-- ======= Frequently Asked Questions Section ======= -->
+  <section id="faq" class="faq section-bg" style="background-color:#f6f9fe;">
+    <div class="container" data-aos="fade-up">
+
+      <div class="section-title">
+        <h2>F.A.Q</h2>
+        <h3>Frequently Asked <span>Questions</span></h3>
+
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-xl-10">
+          <ul class="faq-list">
+
+            <li>
+              <div data-bs-toggle="collapse" class="collapsed question" href="#faq1">How does JobFinder help me to
+                recruit candidates?<i class="bi bi-chevron-down icon-show"></i><i
+                  class="bi bi-chevron-up icon-close"></i></div>
+              <div id="faq1" class="collapse" data-bs-parent=".faq-list">
+                <p>
+                  The main goal of Job Finder is to provide a platform that both employers and potential candidates can
+                  use to share information. You can post jobs and recruit the best candidates for your company. Job
+                  seekers can also find positions tailored to their skills, have access to resumé writing assistance,
+                  job coaching, onboarding and more!
+                </p>
+              </div>
+            </li>
+
+            <li>
+              <div data-bs-toggle="collapse" href="#faq2" class="collapsed question">Which industries do you recruit
+                for?<i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
+              <div id="faq2" class="collapse" data-bs-parent=".faq-list">
+                <p>
+                  We recruit across industries and boundaries. This is because we have a team of recruiters who are
+                  specialists in different industries and niches.
+                </p>
+              </div>
+            </li>
+
+            <li>
+              <div data-bs-toggle="collapse" href="#faq3" class="collapsed question">Do you provide permanent or
+                temporary placements? <i class="bi bi-chevron-down icon-show"></i><i
+                  class="bi bi-chevron-up icon-close"></i></div>
+              <div id="faq3" class="collapse" data-bs-parent=".faq-list">
+                <p>
+                  We help businesses to recruit both permanent and temporary staff.
+                </p>
+              </div>
+            </li>
+
+            <li>
+              <div data-bs-toggle="collapse" href="#faq4" class="collapsed question">Is your agency an equal opportunity
+                employer? <i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
+              <div id="faq4" class="collapse" data-bs-parent=".faq-list">
+                <p>
+                  Yes, we don’t discriminate based on age, race, or gender.
+                </p>
+              </div>
+            </li>
+
+            <li>
+              <div data-bs-toggle="collapse" href="#faq5" class="collapsed question">As a company why should I use your
+                recruitment company to find talent?<i class="bi bi-chevron-down icon-show"></i><i
+                  class="bi bi-chevron-up icon-close"></i></div>
+              <div id="faq5" class="collapse" data-bs-parent=".faq-list">
+                <p>
+                  We have a recruitment team that will guide you and help you during the whole process. With us, your
+                  recruitment needs become better defined. The process is completely tailored to build the team that
+                  will make your company thrive.
+                </p>
+              </div>
+            </li>
+
+            <li>
+              <div data-bs-toggle="collapse" href="#faq6" class="collapsed question">Can your agency help me hire
+                expatriates?<i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i>
+              </div>
+              <div id="faq6" class="collapse" data-bs-parent=".faq-list">
+                <p>
+                  Yes, we help businesses and companies hire expatriates. You can place your request here and a
+                  consultant will get in touch with you
+                </p>
+              </div>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section><!-- End Frequently Asked Questions Section -->
+
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Contact</h2>
+          <h3><span>Contact Us</span></h3>
+          <p>Feel Free to Contact Us</p>
+        </div>
+
+        <div class="row" data-aos="fade-up" data-aos-delay="100">
+          <div class="col-lg-6">
+            <div class="info-box mb-4">
+              <i class="bx bx-map"></i>
+              <h3>Our Address</h3>
+              <p>8 Adelabu Street, Alh. Masha, Surulere</p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6">
+            <div class="info-box  mb-4">
+              <i class="bx bx-envelope"></i>
+              <h3>Email Us</h3>
+              <p>jfinder@placement-hub.com</p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6">
+            <div class="info-box  mb-4">
+              <i class="bx bx-phone-call"></i>
+              <h3>Call Us</h3>
+              <p>	+234 807 244 5395</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row" data-aos="fade-up" data-aos-delay="100">
+
+          <div class="col-lg-6 ">
+              
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.1636310559124!2d3.3479371144220127!3d6.500959125229395!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8c1798cc634b%3A0x7d2fa28b23c578bc!2s8%20Adelabu%20St%2C%20Ikate%20101241%2C%20Lagos!5e0!3m2!1sen!2sng!4v1663257773081!5m2!1sen!2sng" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+
+          <div class="col-lg-6">
+            <form action="{% url 'main:contact' %}" method="post" role="form" >
+              {% csrf_token %}
+              <div class="row">
+                <div class="col form-group">
+                  {% render_field form.full_name class="form-control" placeholder=form.full_name.label %}
+                </div>
+                <div class="col form-group">
+                  {% render_field form.email_address class="form-control" placeholder=form.email_address.label %}
+                </div>
+              </div>
+              <div class="form-group">
+                {% render_field form.subject class="form-control" placeholder=form.subject.label %}
+              </div>
+              <div class="form-group">
+                {% render_field form.message class="form-control" placeholder=form.message.label %}
+              </div>
+              {% comment %} <div class="my-3">
+                <div class="loading">Loading</div>
+                <div class="error-message"></div>
+                <div class="sent-message">Your message has been sent. Thank you!</div>
+              </div> {% endcomment %}
+              <div class="text-center"><button type="submit">Send Message</button></div>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Contact Section -->
+
+</main>
+<!-- End #main -->
+
+{% endblock content %}

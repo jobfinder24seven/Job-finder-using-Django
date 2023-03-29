@@ -1,0 +1,162 @@
+{% extends 'dashboard_base.html' %}
+{% load static %}
+    {% block title %}
+        Admin 
+    {% endblock %}
+    {% block breadcrumb_right_sidebar %}
+    <div class="col-5">
+
+        <div class="d-flex align-items-center">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'admin-home' %}">Home</a></li>
+                    <li class="breadcrumb-item active" ><a href="{% url 'admin-manage-user' %}">Main accounts</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'newsletter-subscriber-view' %}">Newsletter subscribers</a></li> 
+                </ol>
+            </nav>
+        </div>
+    </div>
+    {% endblock  %}
+
+
+    {% block content %}
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+            
+                    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title text mb-0">Neswletter subscriber acccounts <span class="label label-success label-rounded">{{newsletter_subscriber_list_count}} </span></h5>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table no-wrap user-table mb-0">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col" class="border-0 text-uppercase font-medium pl-4">subscriber ID</th>
+                                                    <th scope="col" class="border-0 text-uppercase font-medium">Email</th>
+                                                    <th scope="col" class="border-0 text-uppercase font-medium">Joined on</th>
+                                                    <th scope="col" class="border-0 text-uppercase font-medium">Manage</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% if newsletter_subscribers %}
+                                                {% for subscriber in newsletter_subscribers %}
+                                                <tr>
+                                                    <td class="pl-4">{{subscriber.slug}}</td>
+                                                    <td>
+                                                        <span class="text-muted">{{subscriber.email|urlize}}</span>
+                                                    </td>
+                                                    <td>
+                                                        <span class="text-muted">{{subscriber.created_at}}</span><br>
+                                                        
+                                                    </td>
+                                                    <td>
+                                                            <button type="button"
+                                                            class=" btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><a class="delete" href="{% url 'admin-delete-newsletter-subscriber' slug=subscriber.slug %}"><i
+                                                                class="fa fa-trash"></i></a> </button>
+                                                     
+                                                        
+                                                    </td>
+                                                </tr>
+                                                {% endfor %}
+                                                {% endif %}
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <style type="text/css">
+                        body {
+                            background: #edf1f5;
+                            margin-top: 20px;
+                        }
+                
+                        .card {
+                            position: relative;
+                            display: flex;
+                            flex-direction: column;
+                            min-width: 0;
+                            word-wrap: break-word;
+                            background-color: #fff;
+                            background-clip: border-box;
+                            border: 0 solid transparent;
+                            border-radius: 0;
+                        }
+                
+                        .btn-circle.btn-lg,
+                        .btn-group-lg>.btn-circle.btn {
+                            width: 50px;
+                            height: 50px;
+                            padding: 14px 15px;
+                            font-size: 18px;
+                            line-height: 23px;
+                        }
+                
+                        .text-muted {
+                            color: #8898aa !important;
+                        }
+                
+                        [type=button]:not(:disabled),
+                        [type=reset]:not(:disabled),
+                        [type=submit]:not(:disabled),
+                        button:not(:disabled) {
+                            cursor: pointer;
+                        }
+                
+                        .btn-circle {
+                            border-radius: 100%;
+                            width: 40px;
+                            height: 40px;
+                            padding: 10px;
+                        }
+                
+                        .user-table tbody tr .category-select {
+                            max-width: 150px;
+                            border-radius: 20px;
+                        }
+                    </style>
+                    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+                    <script type="text/javascript">
+                
+                    </script>
+                    {% block sweetalert %}
+                    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                    <script >
+                        $('.delete').on('click', function (e){
+                            e.preventDefault();
+                            var self = $(this);
+                            console.log(self.data('title'));
+            
+                            Swal.fire({
+                                title: 'Are you sure?',
+                                text: "You won't be able to revert this!",
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: 'Yes, delete it!'
+                              }).then((result) => {
+                                if (result.isConfirmed) {
+                                  Swal.fire(
+                                    'Deleted!',
+                                    'Your file has been deleted.',
+                                    'success'
+                                  )
+                                location.href = self.attr('href');
+                                }
+                              })
+                        })
+                        
+                    </script>
+                    {% endblock sweetalert %}
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+    {% endblock %}

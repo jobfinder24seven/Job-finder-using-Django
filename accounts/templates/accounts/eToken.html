@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+    {% block title %}
+    Verification page 
+    {% endblock %}
+{% block content %}
+{% include 'accounts_css.html' %}
+<div id="footer"  >
+    <div width="100%" class="footer-newsletter">
+       <div width="100%" class="container">
+         <div width="100%" class="row justify-content-center">
+           <div class="col-lg-8">
+             
+            <div width="100%" id="login-box">
+          <div class="left">
+            
+            <form action="{% url 'accounts:reset-eToken-action' %}" method="post">
+              <label>Enter the 6-digit code sent to <i style="color:blue;">{{email_id}}</i></label>
+                {% csrf_token %}
+                
+                <input type="hidden" name="email_id" value="{{email_id}}">
+                <label>Don't see the email?</label>
+                <button type="submit" class="btn btn-link">Send new code</button>
+
+            </form>
+
+            <p>Enter your OTP code to continue.</p>
+            <form action="{% url 'accounts:eToken-action' %}" method="POST">
+              {% csrf_token %} 
+              <input type="hideen" name='email_id' id="email_id" value ="{{email_id}}"/>
+              <input type="number" name='eToken' id="eToken" onKeyPress="if(this.value.length==6) return false;" required/>
+              <button class="social-signin google" type="submit" name='submit'  id="submit" value="Submit"  style="background-color: #106eea;">Submit</button>
+            </form>
+            
+          </div>
+    
+   <div class="right" style="background: linear-gradient(60deg, #d476dd 20%,  #106eea 80.1%); text-align: center;">
+      <div style="margin-top: 130px;">
+       <h2 style="font-size: 15px; color:#fff;">One-Time Passcode Verification (OTP)</h2>
+       
+    </div>
+     
+   
+ </div>
+ 
+             
+           </div>
+         </div>
+       </div>
+     </div>
+ </div>
+ 
+{% endblock %}
+
+{% block footer %}
+{% endblock footer %}

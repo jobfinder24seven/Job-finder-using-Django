@@ -1,0 +1,424 @@
+{% load static %}
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords"
+        content="wrappixel, admin dashboard, html css dashboard, web dashboard, bootstrap 5 admin, bootstrap 5, css3 dashboard, bootstrap 5 dashboard, Xtreme lite admin bootstrap 5 dashboard, frontend, responsive bootstrap 5 admin template, Xtreme admin lite design, Xtreme admin lite dashboard bootstrap 5 dashboard template">
+    <meta name="description"
+        content="Xtreme Admin Lite is powerful and clean admin dashboard template, inpired from Bootstrap Framework">
+    <meta name="robots" content="noindex,nofollow">
+    <title>
+        {% block title %}{% endblock%} | Job Finder
+    </title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>
+    {% block jquery %}{% endblock jquery %}
+    <style>
+        #filey{
+            display: none;
+        }
+    </style>
+    <link rel="canonical" href="https://www.wrappixel.com/templates/xtreme-admin-lite/" />
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png' %}" sizes="16x16" href="{% static 'dashboard/assets/images/favicon.png' %}">
+    {% block css %}
+    <!-- Custom CSS -->
+    <link href="{% static 'dashboard/assets/libs/chartist/dist/chartist.min.css' %}" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="{% static 'dashboard/dist/css/style.min.css' %}" rel="stylesheet">
+        <!-- selectize css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/nice-select.css' %}" s />
+    {% endblock css %}
+</head>
+
+<body>
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
+        data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <header class="topbar" data-navbarbg="skin5">
+            <nav class="navbar top-navbar navbar-expand-md navbar-light bg-light">
+                <div class="navbar-header" data-logobg="skin5">
+                    <!-- ============================================================== -->
+                    <!-- Logo -->
+                    <!-- ============================================================== -->
+                    <a class="navbar-brand" href="{% url 'listings:home' %}">
+                        <!-- Logo icon -->
+                        <b class="logo-icon">
+                            <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+                            <!-- Dark Logo icon -->
+                            {% comment %} <img src="{% static 'main/assets/img/heroL.png' %}" alt="homepage" class="dark-logo" />
+                            <!-- Light Logo icon -->
+                            <img src="{% static 'main/assets/img/heroL.png' %}" alt="homepage" class="light-logo" /> {% endcomment %}
+                        </b>
+                        <!--End Logo icon -->
+                        <!-- Logo text -->
+                        <span class="logo-text">
+                            <!-- dark Logo text -->
+                            <img src="{% static 'main/assets/img/heroL.png' %}" alt="homepage" class="dark-logo" width=20 />
+                            <!-- Light Logo text -->
+                            <img src="{% static 'main/assets/img/heroL.png' %}" class="light-logo" alt="homepage" width=50 />
+                        </span>
+                    </a>
+                    <!-- ============================================================== -->
+                    <!-- End Logo -->
+                    <!-- ============================================================== -->
+                    <!-- This is for the sidebar toggle which is visible on mobile only -->
+                    <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)"><i
+                            class="ti-menu ti-close"></i></a>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Logo -->
+                <!-- ============================================================== -->
+                <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
+                    <!-- ============================================================== -->
+                    <!-- toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav float-start me-auto">
+                        <!-- ============================================================== -->
+                        <!-- Search -->
+                        <!-- ============================================================== -->
+                        <!--<li class="nav-item search-box"> <a class="nav-link waves-effect waves-dark"
+                                href="javascript:void(0)"><i class="ti-search"></i></a>
+                            <form class="app-search position-absolute">
+                                <input type="text" class="form-control" placeholder="Search &amp; enter"> <a
+                                    class="srh-btn"><i class="ti-close"></i></a>
+                            </form>
+                        </li>-->
+                        <!-- SearchEnd -->
+                    </ul>
+                    <!-- ============================================================== -->
+                    <!-- Right side toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav float-end">
+                        <!-- ============================================================== -->
+                        <!-- User profile and search -->
+                        <!-- ============================================================== -->
+                        
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                {% if user.is_authenticated %}Hello, {{ user.first_name|capfirst }}.{% endif %}
+                                <img src="{% static 'dashboard/assets/images/users/1.jpg' %}" alt="user" class="rounded-circle" width="31">
+                            </a>
+                            {% if request.session.is_employer %}
+                            <ul class="dropdown-menu dropdown-menu-end user-dd animated" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{% url 'accounts:employer-settings' %}"><i
+                                    class="ti-settings m-r-5 m-l-5"></i>Settings</a>
+
+                                <a class="dropdown-item" href="{% url 'accounts:logout' %}" ><i
+                                        class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
+                            </ul>
+                            {% elif request.session.is_jobseeker %}
+                            <ul class="dropdown-menu dropdown-menu-end user-dd animated" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item"  href="{% url 'accounts:jobseeker-settings' %}"><i
+                                    class="ti-settings m-r-5 m-l-5"></i> Setting</a>
+                                <a class="dropdown-item" href="{% url 'accounts:logout' %}" ><i
+                                        class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
+                            </ul>
+                            {% elif request.session.is_admin %}
+                            <ul class="dropdown-menu dropdown-menu-end user-dd animated" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{% url 'logout-admin' %}" ><i
+                                        class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
+                            </ul>
+                            {% endif %}
+                        </li>
+                        
+                        <!-- ============================================================== -->
+                        <!-- User profile and search -->
+                        <!-- ============================================================== -->
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- ============================================================== -->
+        <!-- End Topbar header -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <aside class="left-sidebar" data-sidebarbg="skin6">
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar">
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav">
+                    {% if request.session.is_employer %}
+                    <ul id="sidebarnav">
+                        <!-- User Profile-->
+                        <li>
+                            <!-- User Profile-->
+                            <li class="p-15 m-t-10"><a href="{% url 'listings:job-form' %}"
+                                class="btn d-block w-100 create-btn text-white no-block d-flex align-items-center"><i
+                                    class="fa fa-plus-square"></i> <span class="hide-menu m-l-5">Post a Job</span> </a>
+                            </li>
+                        <!-- User Profile-->
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                            href="{% url 'accounts:employer-home' %}" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span
+                                    class="hide-menu">Dashboard</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                            href="{% url 'accounts:employer-settings' %}" aria-expanded="false">
+                                {% if requests.seesion.is_verified is true %}
+                                <i class="mdi mdi-account-check"></i><span class="hide-menu">Profile</span></a></li>
+                                {% else %}
+                                <i class="mdi mdi-account-alert"></i><span class="hide-menu">Profile</span></a></li>
+                                {% endif %} 
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                href="{% url 'accounts:employer-direct-job' %}" aria-expanded="false"><i class="mdi mdi-settings"></i><span
+                                    class="hide-menu">Manage Jobs</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                             aria-expanded="false"><i class="ti-search"></i><span
+                                    class="hide-menu">Candidate search</span></a>
+                        </li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                            href="{% url 'subscriptions:initiate-payment' %}" aria-expanded="false"><i class="ti-wallet m-r-5 m-l-5"></i><span
+                                class="hide-menu">Make Payment</span></a>
+                        </li>
+                    
+                        <!--<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                            href="" aria-expanded="false"><i class="mdi mdi-message-settings"></i><span
+                                class="hide-menu">Messages</span></a>
+                        </li>-->
+                        </li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                            href="{% url 'main:help-view' %}" aria-expanded="false"><i class="mdi mdi-help-circle"></i><span
+                                class="hide-menu">Help</span></a>
+                        </li>
+                    </ul>
+                    {% elif request.session.is_jobseeker %}
+                    <ul id="sidebarnav">
+                        <!-- User Profile-->
+                        <li>
+                            <!-- User Profile-->
+                            <li class="p-15 m-t-10"><a href="{% url 'listings:home' %}"
+                                class="btn d-block w-100 create-btn text-white no-block d-flex align-items-center"><i
+                                    class="fa fa-plus-square"></i> <span class="hide-menu m-l-5">JobFinder</span> </a>
+                            </li>
+                        <!-- User Profile-->
+                        </li>
+                        <!-- User Profile-->
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                            href="{% url 'accounts:jobseeker-home' %}" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span
+                                    class="hide-menu">Dashboard</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                href="{% url 'accounts:jobseeker-settings' %}" aria-expanded="false">
+                                {% if requests.seesion.is_verified is true %}
+                                <i class="mdi mdi-account-check"></i><span class="hide-menu">Profile</span></a></li>
+                                {% else %}
+                                <i class="mdi mdi-account-alert"></i><span class="hide-menu">Profile</span></a></li>
+                                {% endif %} 
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                            href="{% url 'accounts:jobseeker-job-manager' %}" aria-expanded="false"><i class="mdi mdi-folder-download"></i><span
+                            class="hide-menu">Manage Job</span></a>
+                        </li>
+
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                href="{% url 'accounts:jobseeker-upload-cv' %}" aria-expanded="false"><i class="mdi mdi-upload"></i><span
+                                    class="hide-menu">Uploaded CV</span></a></li>
+                        
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                            href="{% url 'main:help-view' %}" aria-expanded="false"><i class="mdi mdi-help-circle"></i><span
+                                class="hide-menu">Help</span></a>
+                        </li>
+                    </ul>
+                    {% elif request.session.is_admin %}
+                    <ul id="sidebarnav">
+                        <!-- User Profile-->
+                        <li>
+                            <!-- User Profile-->
+                            <li class="p-15 m-t-10"><a href="{% url 'listings:home' %}"
+                                class="btn d-block w-100 create-btn text-white no-block d-flex align-items-center"><i
+                                    class="fa fa-plus-square"></i> <span class="hide-menu m-l-5">JobFinder</span> </a>
+                            </li>
+                        <!-- User Profile-->
+                        </li>
+                        <!-- User Profile-->
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                            href="{% url 'admin-home' %}" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span
+                                    class="hide-menu">Dashboard</span></a></li>
+                        
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                href="{% url 'admin-employers' %}" aria-expanded="false"><i class="mdi mdi-account-box"></i><span
+                                    class="hide-menu">Employers</span></a>
+                        </li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                            href="{% url 'admin-jobseekers' %}" aria-expanded="false"><i class="mdi mdi-account-box-outline"></i><span
+                                class="hide-menu">Jobseekers</span></a>
+                        </li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                            href="{% url 'admin-manage-user' %}" aria-expanded="false"><i class="mdi mdi-account-network"></i><span
+                                class="hide-menu">Acccount settings</span></a>
+                        </li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                            href="{% url 'admin-manage-listing' %}" aria-expanded="false"><i class="mdi mdi-table-edit"></i><span
+                                class="hide-menu">Manage Listings</span></a>
+                        </li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                            href="{% url 'create-newsletter' %}" aria-expanded="false"><i class="mdi mdi-message-settings-variant"></i><span
+                                class="hide-menu">Messages</span></a>
+                        </li>
+                        
+                    </ul>
+                    {% endif %}
+                </nav>
+                <!-- End Sidebar navigation -->
+            </div>
+            <!-- End Sidebar scroll-->
+        </aside>
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            {% comment %} {% if messages %}
+            <div class="col-12">
+               {% for message in messages %}
+               {% if message.tags == "error" %}
+               <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                  <b>{{ message }}</b>
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+               </div>
+               {% elif message.tags == "success" %}
+               <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                <b>{{ message }}</b>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+             </div>
+               {% endif %}
+               {% endfor %}
+            </div>
+            {% endif %} {% endcomment %}
+            <div class="page-breadcrumb">
+                <div class="row align-items-center">
+                    {% block breadcrumb_right_sidebar %}
+                    {% if request.session.is_employer %}
+                        <div class="col-5">
+                            <h4 class="page-title">Dashboard</h4>
+                            <div class="d-flex align-items-center">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="{% url 'accounts:employer-home' %}">Home</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page"><a href="{% url 'accounts:employer-settings' %}">Profile</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page"><a href="{% url 'accounts:employer-billing' %}">Billings</a></li>
+                                        {% comment %} <li class="breadcrumb-item active" aria-current="page"><a href="{% url 'subscriptions:initiate-payment' %}">Payment</a></li> {% endcomment %}
+                                        <li class="breadcrumb-item active" aria-current="page"><a href="{% url 'accounts:employer-notification' %}">Notifications</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page"><a href="{% url 'accounts:employer-security' %}">Security</a></li>
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
+                    {% elif request.session.is_jobseeker %}
+                    <div class="col-5">
+                        <h4 class="page-title">Dashboard</h4>
+                        <div class="d-flex align-items-center">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{% url 'accounts:jobseeker-home' %}">Home</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page"><a href="{% url 'accounts:jobseeker-settings' %}">Profile</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page"><a href="{% url 'accounts:jobseeker-notification' %}">Notifications</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page"><a href="{% url 'accounts:jobseeker-security' %}">Security</a></li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endblock breadcrumb_right_sidebar %}
+
+                    <div class="col-7">
+                        {% if request.session.is_employer %}
+                        <div class="text-end upgrade-btn">
+                            <a href="{% url 'listings:job-form' %}"  class="btn btn-primary rounded-pill"><i class="mdi mdi-cloud-upload"></i> Post a Job</a>
+                        </div>
+                        {% elif request.session.is_jobseeker %}
+                        <div class="text-end upgrade-btn">
+                            <a href="{% url 'listings:home' %}"  class="btn btn-primary rounded-pill"><i class="mdi mdi-cloud-upload"></i> Find Job</a>
+                        </div>
+                        {% endif %}
+                        
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Bread crumb and right sidebar toggle -->
+            {% block  content %}
+            
+            {% endblock  %}
+            <!-- End Container fluid  -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- footer -->
+            <!-- ============================================================== -->
+            <!--<footer class="footer text-center">
+                All Rights Reserved by Xtreme Admin. Designed and Developed by <a
+                    href="https://www.wrappixel.com">WrapPixel</a>.
+            </footer>-->
+            <footer class="footer text-center">
+                All Rights Reserved by <b>JobFinder</b> Admin. 
+            </footer>
+            <!-- ============================================================== -->
+            <!-- End footer -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page wrapper  -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+    {% block js %}
+    <script src="{% static 'dashboard/assets/libs/jquery/dist/jquery.min.js' %}"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="{% static 'dashboard/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'dashboard/dist/js/app-style-switcher.js' %}"></script>
+    <!--Wave Effects -->
+    <script src="{% static 'dashboard/dist/js/waves.js' %}"></script>
+    <!--Menu sidebar -->
+    <script src="{% static 'dashboard/dist/js/sidebarmenu.js' %}"></script>
+    <!--Custom JavaScript -->
+    <script src="{% static 'dashboard/dist/js/custom.js' %}"></script>
+    <!--This page JavaScript -->
+    <!--chartis chart-->
+    <script src="{% static 'dashboard/assets/libs/chartist/dist/chartist.min.js' %}"></script>
+    <script src="{% static 'dashboard/assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js' %}"></script>
+    <script src="{% static 'dashboard/dist/js/pages/dashboards/dashboard1.js' %}"></script>
+    {% endblock js %}
+    {% block sweetalert %}
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        {% for message in messages %}
+        {% if message.tags == "error" %}
+        swal("Error!", '{{ message }}', "error");
+        fire('{{ message }}', "error")
+        {% else %}
+        swal("Bravo!", '{{ message }}', "success");
+        {% endif %}
+        {% endfor %}
+    </script>
+    {% endblock sweetalert %}
+    {% block extra_js %}
+    {% endblock extra_js %}
+</body>
+
+</html>

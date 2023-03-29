@@ -1,0 +1,230 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  
+  <title>{% block title %}{% endblock title %} | Job Finder</title>
+  
+  <meta content="{{job.seo_description}}" name="description">
+  <meta content="{{job.seo_keywords}}" name="keywords">
+
+ <!-- Favicons -->
+ <link href="{% static 'main/assets/img/favicoon.png' %}" rel="icon">
+ <link href="{% static 'main/assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  {% block css %}
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'main/assets/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'main/assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'main/assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'main/assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'main/assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'main/assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+  {% endblock css %}
+  
+  {% block main_css %}
+  <!-- Template Main CSS File -->
+  <link href="{% static 'main/assets/css/style.css' %}" rel="stylesheet">
+  <link href="{% static 'main/assetss/css/style.css' %}" rel="stylesheet">
+  {% endblock main_css %}
+  
+  
+</head>
+
+<body>
+  {% comment %} {% if messages %}
+<div class="col-12">
+   {% for message in messages %}
+   {% if message.tags == "error" %}
+   <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+      <b>{{ message }}</b>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+   </div>
+   {% elif message.tags == "success" %}
+   <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+    <b>{{ message }}</b>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+ </div>
+   {% endif %}
+   {% endfor %}
+</div>
+{% endif %} {% endcomment %}
+
+  <!-- ======= Top Bar ======= -->
+  <section id="topbar" class="d-flex align-items-center">
+    <div class="container d-flex justify-content-center justify-content-md-between">
+      <div class="contact-info d-flex align-items-center">
+        <i class="bi bi-envelope d-flex align-items-center"><a href="mailto:jfinder@placement-hub.com">jfinder@placement-hub.com</a></i>
+        <i class="bi bi-phone d-flex align-items-center ms-4"><span>+234 807 244 5395</span></i>
+      </div>
+      <div class="social-links d-none d-md-flex align-items-center">
+        <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+        <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+        <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+        <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <!--<h1 class="logo"><a href="index.html">JobFInder<span>.</span></a></h1>
+       Uncomment below if you prefer to use an image logo -->
+       <a href="{% url 'listings:home' %}" class="logo"><img src="{% static 'main/assets/img/heroL.png' %}" alt=""></a>
+      {% block navbar %}
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="{% url 'main:employers' %}" style="color: #106eea;">Employers</a></li>
+          <!--<li><a class="nav-link scrollto" href="{% url 'listings:free-job-post' %}">Free Job Posting</a></li>-->
+          <li><a class="nav-link scrollto" href="{% url 'listings:featured-job-posting' %}">Featured Job Posting</a></li>
+          <li><a class="nav-link scrollto " href="{% url 'main:recruitments' %}">Recruitment</a></li>
+          <li><a class="nav-link scrollto" href="{% url 'main:find-candidates' %}">Candidate Search</a></li>
+          <!--<li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="#">Drop Down 1</a></li>
+              <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
+                <ul>
+                  <li><a href="#">Deep Drop Down 1</a></li>
+                  <li><a href="#">Deep Drop Down 2</a></li>
+                  <li><a href="#">Deep Drop Down 3</a></li>
+                  <li><a href="#">Deep Drop Down 4</a></li>
+                  <li><a href="#">Deep Drop Down 5</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Drop Down 2</a></li>
+              <li><a href="#">Drop Down 3</a></li>
+              <li><a href="#">Drop Down 4</a></li>
+            </ul>
+          </li>-->
+          {% if user.is_authenticated %}
+            <li><a class="nav-link scrollto" href="{% url 'accounts:logout' %}" style="color: #106eea;">Logout</a></li>
+            {% if request.session.is_employer %}
+            <li><a class="nav-link scrollto" href="{% url 'accounts:employer-home' %}" style="color: #8110ea;">Dashboard</a></li>
+            {% elif request.session.is_jobseeker %}
+            <li><a class="nav-link scrollto" href="{% url 'accounts:jobseeker-home' %}" style="color: #8110ea;">Dashboard</a></li>
+            {% elif request.session.is_admin  %}
+            <li><a class="nav-link scrollto" href="{% url 'admin-home' %}" style="color: #8110ea;">Dashboard</a></li>
+            {% endif %}
+          {% else %}
+          <li><a class="nav-link scrollto" href="{% url 'accounts:login' %}">Login</a></li>
+          <li><a class="nav-link scrollto" href="{% url 'accounts:signup' %}" style="color: #106eea;">Sign Up</a></li>
+          {% endif %}
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+      {% endblock navbar %}
+    </div>
+  </header><!-- End Header -->
+  {% block content %}
+
+
+
+  {% endblock content %}
+  <!-- ======= Footer ======= -->
+  {% block footer %}
+  <footer id="footer" style="background: #fff;" >
+
+    <div class="footer-newsletter">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-6">
+            <h4>Join Our Newsletter</h4>
+            
+            <form action="{% url 'main:subscribe-to-a-newsletter' %}" method="post">
+              {% csrf_token %}
+              <input type="email" name="email" required>
+              <input type="submit" value="Subscribe">
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-top" style="background: #fff;" >
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-4 col-md-6 footer-contact">
+            <h3> <a href="{% url 'listings:home' %}" class="logo"><img  height="40px" src="{% static 'main/assets/img/heroL.png' %}" alt=""></a><span>.</span></h3>
+            <p>
+              8 Adelabu Street,
+              Alh. Masha Road<br>
+              Surulere, Lagos. <br><br>
+              <strong>Phone:</strong>   +234 807 244 5395<br><br>
+              <strong>Email:</strong> jfinder@placement-hub.com<br>
+            </p>
+          </div>
+
+          <div class="col-lg-4 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="{% url 'main:employers' %}">Employers</a></li>
+              <!--<li><i class="bx bx-chevron-right"></i> <a href="{% url 'listings:free-job-post' %}">Free Job Posting</a></li>-->
+              <li><i class="bx bx-chevron-right"></i> <a href="{% url 'listings:featured-job-posting' %}">Featured Job Posting</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{% url 'main:recruitments' %}">Recruitment</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{% url 'main:find-candidates' %}">Candidate Search</a></li>
+            </ul>
+          </div>
+
+       
+          <div class="col-lg-4 col-md-6 footer-links">
+            <h4>Our Social Networks</h4>
+            <p>Checkout our lastest post on socials.  </p>
+            <div class="social-links mt-3">
+              <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+              <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+              <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+              <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+              <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+   
+  </footer><!-- End Footer -->
+  {% endblock footer%}
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  {% block js  %}
+  <!-- Vendor JS Files -->
+  <script src="{% static 'main/assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
+  <script src="{% static 'main/assets/vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'main/assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'main/assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'main/assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'main/assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+  <script src="{% static 'main/assets/vendor/waypoints/noframework.waypoints.js' %}"></script>
+  <script src="{% static 'main/assets/vendor/php-email-form/validate.js' %}"></script>
+  {% endblock js  %}
+  <!-- Template Main JS File -->
+  <script src="{% static 'main/assets/js/main.js' %}"></script>
+   
+  <!--sweet alert-->
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script>
+    {% for message in messages %}
+    {% if message.tags == "error" %}
+    swal("Error!", '{{ message }}', "error");
+    fire('{{ message }}', "error")
+    {% else %}
+    swal("Bravo!", '{{ message }}', "success");
+    {% endif %}
+    {% endfor %}
+</script>
+<script>
+  
+</script>
+</body>
+
+</html>

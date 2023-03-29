@@ -1,0 +1,266 @@
+{% extends 'dashboard_base.html' %}
+{% load static %}
+    {% block title %}
+       {{title}}
+    {% endblock %}
+
+        {% block content %}
+  
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-xl px-4 mt-9">
+
+                <hr class="mt-0 mb-4">
+                <div class="row">
+                    <div class="col-xl-4">
+        
+                        <div class="card mb-2 mb-xl-0">
+                            <div class="card-header">Company logo</div>
+                        <form method="post" action="{% url 'accounts:employer-logo-update' %}"  enctype="multipart/form-data">
+                                {% csrf_token %}
+                            <div class="card-body text-center">
+                                <!--<input type="file" id="filey" name="logo" value="{{ employer.logo}}" >-->
+                                {% if employer.logo  %}
+                                <img class="img-account-profile rounded-circle mb-2" 
+                                src="{{ employer.logo.url }}" onclick = "pro1()"; alt="">
+                                {% else %}
+                                <img class="img-account-profile rounded-circle mb-2" 
+                                    src="http://bootdey.com/img/Content/avatar/avatar1.png" onclick = "pro1()";  alt="">
+                                {% endif %}
+        
+                                <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
+                                <!-- Avatar -->
+                                <div class="card mb-4">
+                                    <div class="card-body">
+                                    <h3 class="h6">Company Logo</h3>
+                                    <input class="form-control" type="file" name="logo">
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary" type="submit">Upload</button>
+                                <a href="{% url 'accounts:employer-logo-remove' %}"><button class="btn btn-primary" type="button">Remove</button></a>
+                            </div>
+                        </form>
+                        </div>
+                    </div>
+                    <div class="col-xl-8">
+        
+                        <div class="card mb-4">
+                            <div class="card-header">Account Details</div>
+                            <div class="card-body">
+                                <form method="post" action="{% url 'accounts:employer-settings-update' %}" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <div class="row gx-3 mb-3">
+        
+                                        <div class="col-md-6">
+                                            <label class="small mb-1" for="inputFirstName">First name</label>
+                                            <input class="form-control" name="first_name" id="inputFirstName" type="text"
+                                                placeholder="Enter your first name" value="{{user.first_name}}">
+                                        </div>
+        
+                                        <div class="col-md-6">
+                                            <label class="small mb-1" for="inputLastName">Last name</label>
+                                            <input class="form-control" name="last_name" id="inputLastName" type="text"
+                                                placeholder="Enter your last name" value="{{user.last_name}}">
+                                        </div>
+                                    </div>
+
+                                    <div class="row gx-3 mb-3">
+        
+                                        <div class="col-md-6">
+                                            <label class="small mb-1" for="inputPhone">Phone number</label>
+                                            <input class="form-control" name="phone_number" id="inputPhone" type="tel"
+                                                placeholder="Enter your phone number" value="{{user.phone_number}}">
+                                        </div>
+        
+                                        <div class="col-md-6">
+                                            <label class="small mb-1" for="inputBirthday">Email</label>
+                                            <input class="form-control" id="inputBirthday" type="email" name="email"
+                                                placeholder="Enter your company email" value="{{user.email}}" readonly>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label class="small mb-1" for="inputUsername">Company Name(how your name will appear to
+                                            other users on the site)</label>
+                                        <input class="form-control" name="company_name" id="inputUsername" type="text"
+                                            placeholder="Enter your company Name" value="{{employer.company_name}}">
+                                    </div>
+                                    <div class="row gx-3 mb-3">
+        
+                                        <div class="col-md-6">
+                                            <label class="small mb-1" for="inputOrgName">Website</label>
+                                            <input class="form-control" name="website" id="inputOrgName" type="text"
+                                                placeholder="Enter your organization website address" value="{{employer.website}}">
+                                        </div>
+        
+                                        <div class="col-md-6">
+                                            <label class="form-label">Number of Employees</label>
+                                            <select class="select2 form-control select2-hidden-accessible" name="number_of_employees" data-select2-placeholder="Select state" data-select2-id="select2-data-4-680y" tabindex="-1" aria-hidden="true">
+                                              {% if employer.number_of_employees %}
+                                              <option data-select2-id="select2-data-6-cshs">{{employer.number_of_employees}}</option>
+                                              {% endif %}
+                                              {% for number in numbers %}
+                                              <option value="{{number}}">{{number}}</option>
+                                              {% endfor %}
+
+                                            
+                                            </select><span class="select2 select2-container select2-container--bootstrap-5" dir="ltr" data-select2-id="select2-data-5-np4c" style="width: 391px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-2fn7-container" aria-controls="select2-2fn7-container"><span class="select2-selection__rendered" id="select2-2fn7-container" role="textbox" aria-readonly="true" title="Select state"><span class="select2-selection__placeholder">Select number of employees</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                        </div>
+                                    </div>
+        
+                                    <div class="row gx-3 mb-3">
+        
+                                        <div class="col-md-6">
+                                            <label class="form-label">Company Industry</label>
+                                            <select class="select2 form-control select2-hidden-accessible" name="company_industry" data-select2-placeholder="Select state" data-select2-id="select2-data-4-680y" tabindex="-1" aria-hidden="true">
+                                                {% if employer.company_industry %}
+                                                <option data-select2-id="select2-data-6-cshs">{{employer.company_industry}}</option>
+                                                {% endif %}
+                                              {% for industry in industries %}
+                                              <option value="{{industry}}">{{industry}}</option>
+                                              {% endfor %}
+                            
+                                            </select><span class="select2 select2-container select2-container--bootstrap-5" dir="ltr" data-select2-id="select2-data-5-np4c" style="width: 391px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-2fn7-container" aria-controls="select2-2fn7-container"><span class="select2-selection__rendered" id="select2-2fn7-container" role="textbox" aria-readonly="true" title="Select state"><span class="select2-selection__placeholder">Select industry</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                        </div>
+        
+                                        <div class="col-md-6">
+                                            <label class="form-label">Company Type</label>
+                                            <select class="select2 form-control select2-hidden-accessible" name="company_type" data-select2-placeholder="Select state" data-select2-id="select2-data-4-680y" tabindex="-1" aria-hidden="true">
+                                                {% if employer.company_type %}
+                                                <option data-select2-id="select2-data-6-cshs">{{employer.company_type}}</option>
+                                                {% endif %}
+                                              {% for company_type in company_types %}
+                                              <option value="{{company_type}}">{{company_type}}</option>
+                                              {% endfor %}
+                                             
+                                              
+                                            </select><span class="select2 select2-container select2-container--bootstrap-5" dir="ltr" data-select2-id="select2-data-5-np4c" style="width: 391px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-2fn7-container" aria-controls="select2-2fn7-container"><span class="select2-selection__rendered" id="select2-2fn7-container" role="textbox" aria-readonly="true" title="Select state"><span class="select2-selection__placeholder">Select company type</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="row gx-3 mb-3">
+        
+                                        <div class="col-md-6">
+                                            <label class="small mb-1" for="inputOrgName">Address</label>
+                                            <input class="form-control" name="address" id="inputOrgName" value="{{employer.address}}" type="text"
+                                                placeholder="Enter your company address" value="San Francisco, CA">
+                                        </div>
+        
+                                        <div class="col-md-3">
+                                            <label class="form-label">State</label>
+                                            <select class="select2 form-control select2-hidden-accessible" name="location" data-select2-placeholder="Select state" data-select2-id="select2-data-4-680y" tabindex="-1" aria-hidden="true">
+                                                {% if employer.location %}
+                                                <option data-select2-id="select2-data-6-cshs">{{employer.location}}</option>
+                                                {% endif %}
+                                              {% for location in locations %}
+                                              <option value="{{location}}">{{location}}</option>
+                                              {% endfor %}
+                                             
+                                            </select><span class="select2 select2-container select2-container--bootstrap-5" dir="ltr" data-select2-id="select2-data-5-np4c" style="width: 391px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-2fn7-container" aria-controls="select2-2fn7-container"><span class="select2-selection__rendered" id="select2-2fn7-container" role="textbox" aria-readonly="true" title="Select state"><span class="select2-selection__placeholder">Select state</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <label class="form-label">Country</label>
+                                            <select class="select2 form-control select2-hidden-accessible" name="country" data-select2-placeholder="Select state" data-select2-id="select2-data-4-680y" tabindex="-1" aria-hidden="true">
+                                                {% if employer.country %}
+                                                <option data-select2-id="select2-data-6-cshs">{{employer.country}}</option>
+                                                {% endif %}
+                                              {% for country in countries  %}
+                                              <option value="{{country}}">{{country}}</option>
+                                              {% endfor %}
+                                              
+                                            </select><span class="select2 select2-container select2-container--bootstrap-5" dir="ltr" data-select2-id="select2-data-5-np4c" style="width: 391px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-2fn7-container" aria-controls="select2-2fn7-container"><span class="select2-selection__rendered" id="select2-2fn7-container" role="textbox" aria-readonly="true" title="Select state"><span class="select2-selection__placeholder">Select country</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                        </div>
+                                    </div> 
+                                    <div class="mb-3">
+                                        <label class="small mb-1" for="inputEmailAddress">Description</label>
+                                        <textarea class="form-control" name="company_description" rows="3">{{employer.company_description}}</textarea>
+                                    </div>
+                                    <button class="btn btn-primary" type="submit">Save changes</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <style type="text/css">
+
+                body {
+                    margin-top: 20px;
+                    background-color: #f2f6fc;
+                    color: #69707a;
+                }
+        
+                .img-account-profile {
+                    height: 10rem;
+                }
+        
+                .rounded-circle {
+                    border-radius: 50% !important;
+                }
+        
+                .card {
+                    box-shadow: 0 0.15rem 1.75rem 0 rgb(33 40 50 / 15%);
+                }
+        
+                .card .card-header {
+                    font-weight: 500;
+                }
+        
+                .card-header:first-child {
+                    border-radius: 0.35rem 0.35rem 0 0;
+                }
+        
+                .card-header {
+                    padding: 1rem 1.35rem;
+                    margin-bottom: 0;
+                    background-color: #7460ee;
+                    color: white;
+                    border-bottom: 1px solid rgba(33, 40, 50, 0.125);
+                }
+        
+                .form-control,
+                .dataTable-input {
+                    display: block;
+                    width: 100%;
+                    padding: 0.875rem 1.125rem;
+                    font-size: 0.875rem;
+                    font-weight: 400;
+                    line-height: 1;
+                    color: #69707a;
+                    background-color: #fff;
+                    background-clip: padding-box;
+                    border: 1px solid #c5ccd6;
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                    appearance: none;
+                    border-radius: 0.35rem;
+                    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+                }
+        
+                .nav-borders .nav-link.active {
+                    color: #0061f2;
+                    border-bottom-color: #0061f2;
+                }
+        
+                .nav-borders .nav-link {
+                    color: #69707a;
+                    border-bottom-width: 0.125rem;
+                    border-bottom-style: solid;
+                    border-bottom-color: transparent;
+                    padding-top: 0.5rem;
+                    padding-bottom: 0.5rem;
+                    padding-left: 0;
+                    padding-right: 0;
+                    margin-left: 1rem;
+                    margin-right: 1rem;
+                }
+            </style>
+            <script type="text/javascript">
+        
+            </script>
+
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+        {% endblock %}

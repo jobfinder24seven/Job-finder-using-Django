@@ -1,0 +1,361 @@
+{% extends 'dashboard_base.html' %}
+{% load static %}
+    {% block title %}
+        Admin
+    {% endblock %}
+
+    {% block breadcrumb_right_sidebar %}
+    <div class="col-5">
+        <h4 class="page-title">Dashboard</h4>
+        <div class="d-flex align-items-center">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'admin-home' %}">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    {% endblock breadcrumb_right_sidebar %}
+
+        {% block content %}
+
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-xl px-4 mt-4">
+                <hr class="mt-0 mb-4">
+                <div class="row">
+                    <div class="col-xl-4">
+        
+                        <div class="card mb-2 mb-xl-0">
+                            <div class="card-header">Profile pics</div>
+                        <form method="post" action="{% url 'accounts:jobseeker-avater-update' %}"  enctype="multipart/form-data">
+                                {% csrf_token %}
+                            <div class="card-body text-center">
+                                <!--<input type="file" id="filey" name="logo" value="{{ employer.logo}}" >-->
+                                {% if jobseeker.avater  %}
+                                <img class="img-account-profile rounded-circle mb-2" 
+                                src="{{ jobseeker.avater.url }}" onclick = "pro1()"; alt="">
+                                {% else %}
+                                <img class="img-account-profile rounded-circle mb-2" 
+                                    src="http://bootdey.com/img/Content/avatar/avatar1.png" onclick = "pro1()";  alt="">
+                                {% endif %}
+        
+                                <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
+                                <!-- Avatar -->
+                                <div class="card mb-4">
+                                    <div class="card-body">
+                                    <h3 class="h6">Profile Picture</h3>
+                                  
+                                    </div>
+                                </div>
+                               
+                            </div>
+                        </form>
+                        </div>
+                    </div>
+                    <div class="col-xl-8">
+
+                        <div class="card mb-4">
+                            <div class="card-header">Account information</div>
+                            <div class="card-body">
+                                <form method="post" action="{% url 'accounts:jobseeker-settings-update' %}"  enctype="multipart/form-data">
+                                    {% csrf_token %}
+
+                                    <div class="row gx-3 mb-3">
+        
+                                        <div class="col-md-6">
+                                            <label class="small mb-1" for="inputFirstName">First name</label>
+                                            <input class="form-control" name="first_name" id="inputFirstName" type="text"
+                                                placeholder="Enter your first name" value="{{user.first_name}}">
+                                        </div>
+        
+                                        <div class="col-md-6">
+                                            <label class="small mb-1" for="inputLastName">Last name</label>
+                                            <input class="form-control" name="last_name" id="inputLastName" type="text"
+                                                placeholder="Enter your last name" value="{{user.last_name}}">
+                                        </div>
+                                    </div>
+
+                                    <div class="row gx-3 mb-3">
+        
+                                        <div class="col-md-6">
+                                            <label class="small mb-1" for="inputPhone">Phone number</label>
+                                            <input class="form-control" name="phone_number" id="inputPhone" type="tel"
+                                                placeholder="Enter your phone number" value="{{user.phone_number}}">
+                                        </div>
+        
+                                        <div class="col-md-6">
+                                            <label class="small mb-1" for="inputBirthday">Email</label>
+                                            <input class="form-control" id="inputBirthday" type="email" name="email"
+                                                placeholder="Enter your company email" value="{{user.email}}">
+                                        </div>
+                                    </div>
+
+                                    <!--Company Address|Location|Country START-->
+                                    <div class="row gx-3 mb-3">
+        
+                                        <div class="col-md-6">
+                                            <label class="small mb-1" for="inputOrgName">Address</label>
+                                            <input class="form-control" name="address" id="inputOrgName" value="{{jobseeker.address}}" type="text"
+                                                placeholder="Enter your company address" value="San Francisco, CA">
+                                        </div>
+        
+                                        <div class="col-md-3">
+                                            <label class="form-label">State</label>
+                                            <select class="select2 form-control select2-hidden-accessible" name="location" data-select2-placeholder="Select state" data-select2-id="select2-data-4-680y" tabindex="-1" aria-hidden="true">
+                                                {% if jobseeker.location %}
+                                                <option data-select2-id="select2-data-6-cshs">{{jobseeker.location}}</option>
+                                                {% endif %}
+                                              {% for location in locations %}
+                                              <option value="{{location}}">{{location}}</option>
+                                              {% endfor %}
+                                             
+                                            </select><span class="select2 select2-container select2-container--bootstrap-5" dir="ltr" data-select2-id="select2-data-5-np4c" style="width: 391px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-2fn7-container" aria-controls="select2-2fn7-container"><span class="select2-selection__rendered" id="select2-2fn7-container" role="textbox" aria-readonly="true" title="Select state"><span class="select2-selection__placeholder">Select state</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <label class="form-label">Country</label>
+                                            <select class="select2 form-control select2-hidden-accessible" name="country" data-select2-placeholder="Select state" data-select2-id="select2-data-4-680y" tabindex="-1" aria-hidden="true">
+                                                {% if jobseeker.country %}
+                                                <option data-select2-id="select2-data-6-cshs">{{jobseeker.country}}</option>
+                                                {% endif %}
+                                              {% for country in countries  %}
+                                              <option value="{{country}}">{{country}}</option>
+                                              {% endfor %}
+                                              
+                                            </select><span class="select2 select2-container select2-container--bootstrap-5" dir="ltr" data-select2-id="select2-data-5-np4c" style="width: 391px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-2fn7-container" aria-controls="select2-2fn7-container"><span class="select2-selection__rendered" id="select2-2fn7-container" role="textbox" aria-readonly="true" title="Select state"><span class="select2-selection__placeholder">Select country</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                        </div>
+                                    </div>
+                                    <!--Company Address|Location|Country END-->
+
+
+
+                                    <!--Job|Title|Type START-->
+                                    <div class="row gx-3 mb-3">
+
+                                        <div class="col-md-6">
+                                            <label class="form-label">Job Type</label>
+                                            <select class="select2 form-control select2-hidden-accessible" name="job_type" data-select2-placeholder="Select state" data-select2-id="select2-data-4-680y" tabindex="-1" aria-hidden="true">
+                                              {% if jobseeker.job_type %}
+                                              <option data-select2-id="select2-data-6-cshs">{{jobseeker.job_type}}</option>
+                                              {% endif %}
+                                              {% for job_type in job_types  %}
+                                              <option value="{{job_type}}">{{job_type}}</option>
+                                              {% endfor %}
+                                            </select><span class="select2 select2-container select2-container--bootstrap-5" dir="ltr" data-select2-id="select2-data-5-np4c" style="width: 391px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-2fn7-container" aria-controls="select2-2fn7-container"><span class="select2-selection__rendered" id="select2-2fn7-container" role="textbox" aria-readonly="true" title="Select state"><span class="select2-selection__placeholder">Select job type</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                        </div>
+                                        <!--Gender title START-->
+                                        <div class="col-md-3">
+                                            <label class="form-label">Gender</label>
+                                            <select class="select2 form-control select2-hidden-accessible" name="gender" data-select2-placeholder="Select state" data-select2-id="select2-data-4-680y" tabindex="-1" aria-hidden="true">
+                                              {% if jobseeker.gender %}
+                                              <option data-select2-id="select2-data-6-cshs">{{jobseeker.gender}}</option>
+                                              {% endif %}
+                                              {% for sex in gender  %}
+                                              <option value="{{sex}}">{{sex}}</option>
+                                              {% endfor %}
+                                            </select><span class="select2 select2-container select2-container--bootstrap-5" dir="ltr" data-select2-id="select2-data-5-np4c" style="width: 391px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-2fn7-container" aria-controls="select2-2fn7-container"><span class="select2-selection__rendered" id="select2-2fn7-container" role="textbox" aria-readonly="true" title="Select state"><span class="select2-selection__placeholder">Select Gender</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                        </div>
+                                        
+                                        <!--Gender title END-->
+
+                                        <!--DOB START-->
+                                        {% if jobseeker.dob  %}
+                                        <div class="col-md-3">
+                                            <label class="form-label">Date of Birth</label>
+                                            <input id="dob" name="dob" type="text" value="{{jobseeker.dob}}" class="form-control resume">
+                                        </div>
+                                        {% else %}
+                                        <div class="col-md-3">
+                                            <label class="form-label">Date of Birth</label>
+                                            <input id="maximum-salary" name="dob" type="date" class="form-control resume">
+                                        </div>
+                                        {% endif %}
+                                        <!--DOB END-->
+
+
+                                    </div>
+                                    <!--Job|Title|Type END for Direct Employer-->
+
+                                    <!--Min|Max_salary| Qualification|Year of Exp START-->
+                                    <div class="row gx-3 mb-3">
+
+                                        <div class="col-md-3">
+                                            <label class="form-label">Qualification</label>
+                                            <select class="select2 form-control select2-hidden-accessible"name="education" data-select2-placeholder="Select state" data-select2-id="select2-data-4-680y" tabindex="-1" aria-hidden="true">
+                                                {% if jobseeker.education %}
+                                                <option data-select2-id="select2-data-6-cshs">{{jobseeker.education}}</option>
+                                                {% endif %}
+                                                {% for qualification in qualifications  %}
+                                                <option value="{{qualification}}">{{qualification}}</option>
+                                                {% endfor %}
+                                             
+                                            </select><span class="select2 select2-container select2-container--bootstrap-5" dir="ltr" data-select2-id="select2-data-5-np4c" style="width: 391px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-2fn7-container" aria-controls="select2-2fn7-container"><span class="select2-selection__rendered" id="select2-2fn7-container" role="textbox" aria-readonly="true" title="Select state"><span class="select2-selection__placeholder">Select Qualification</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <label class="form-label">Experience</label>
+                                            <select class="select2 form-control select2-hidden-accessible" name="experience" data-select2-placeholder="Select state" data-select2-id="select2-data-4-680y" tabindex="-1" aria-hidden="true">
+                                                {% if jobseeker.experience%}
+                                                <option data-select2-id="select2-data-6-cshs">{{jobseeker.experience}}</option>
+                                                {% endif %}
+                                                {% for exp in experience  %}
+                                                <option value="{{exp}}">{{exp}}</option>
+                                                {% endfor %}
+                                              
+                                            </select><span class="select2 select2-container select2-container--bootstrap-5" dir="ltr" data-select2-id="select2-data-5-np4c" style="width: 391px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-2fn7-container" aria-controls="select2-2fn7-container"><span class="select2-selection__rendered" id="select2-2fn7-container" role="textbox" aria-readonly="true" title="Select state"><span class="select2-selection__placeholder">Select work experience</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                        </div>
+        
+                                        <div class="col-md-3">
+                                            <label class="small mb-1" for="inputOrgName">Min Salary</label>
+                                            <input class="form-control" name="min_salary" id="inputOrgName"  type="text"
+                                                placeholder="Minimum slary" value="{{jobseeker.min_salary}}">
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <label class="small mb-1" for="inputOrgName">Max Salary</label>
+                                            <input class="form-control" name="max_salary" value="{{jobseeker.max_salary}}" id="inputOrgName"  type="text"
+                                                placeholder="Maximum salary" >
+                                        </div>
+    
+                                    </div>
+                                    <!--Company Address|Location|Country END-->
+                                    
+                                    <div class="mb-3">
+                                        <label class="small mb-1" for="inputEmailAddress">Summary</label>
+                                        <textarea class="form-control" name="summary" rows="5">{{jobseeker.summary}}</textarea>
+                                    </div>
+
+
+                                    <!-- Avatar| website -->
+                                    <div class="row gx-3 mb-3">
+                                    
+                                        <div class="col-md-12">
+                                            <label class="form-label">skills</label>
+                                            <input class="form-control" name="skills" value="{{jobseeker.skills}}" placeholder="Phython, Java, PHP, DevOps"type="text">
+                                        </div>
+                                        
+                                    </div>
+
+                                    <div class="row gx-3 mb-3">
+                                    
+                                        <div class="col-md-12">
+                                            <label class="form-label">Portfolio</label>
+                                            <input class="form-control" name="portfolio_link" value="{{jobseeker.portfolio_link}}"type="text">
+                                        </div>
+                                        
+                                    </div>
+                                    <!-- Avatar| website -->
+                                    <div class="row gx-3 mb-3">
+                                        {% comment %} <div class="col-md-9">
+                                            <label class="form-label">upload resume</label>
+                                            <input class="form-control" name="resume" type="file">
+                                        </div> {% endcomment %}
+
+                                        <div class="col-md-3">
+                                            <label class="form-label">Share my reume to employer</label>
+                                            <select class="select2 form-control select2-hidden-accessible"name="display_resume" data-select2-placeholder="Select state" data-select2-id="select2-data-4-680y" tabindex="-1" aria-hidden="true">
+                                                {% if jobseeker.display_resume == 1 %}
+                                                <option data-select2-id="select2-data-6-cshs">YES</option>
+                                                {% elif jobseeker.display_resume == 0 %}
+                                                <option data-select2-id="select2-data-6-cshs">NO</option>
+                                                {% endif %}
+                                                {% for ans in booleann  %}
+                                                <option value="{{ans}}">{{ans}}</option>
+                                                {% endfor %}
+                                             
+                                            </select><span class="select2 select2-container select2-container--bootstrap-5" dir="ltr" data-select2-id="select2-data-5-np4c" style="width: 391px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-2fn7-container" aria-controls="select2-2fn7-container"><span class="select2-selection__rendered" id="select2-2fn7-container" role="textbox" aria-readonly="true" title="Select state"><span class="select2-selection__placeholder">Select</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                        </div>
+
+                                        
+                                    </div>
+                                    
+        
+                                    {% comment %} <button class="btn btn-primary" type="submit">Update</button> {% endcomment %}
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <style type="text/css">
+
+                body {
+                    margin-top: 20px;
+                    background-color: #f2f6fc;
+                    color: #69707a;
+                }
+        
+                .img-account-profile {
+                    height: 10rem;
+                }
+        
+                .rounded-circle {
+                    border-radius: 50% !important;
+                }
+        
+                .card {
+                    box-shadow: 0 0.15rem 1.75rem 0 rgb(33 40 50 / 15%);
+                }
+        
+                .card .card-header {
+                    font-weight: 500;
+                }
+        
+                .card-header:first-child {
+                    border-radius: 0.35rem 0.35rem 0 0;
+                }
+        
+                .card-header {
+                    padding: 1rem 1.35rem;
+                    margin-bottom: 0;
+                    background-color: rgba(33, 40, 50, 0.03);
+                    border-bottom: 1px solid rgba(33, 40, 50, 0.125);
+                }
+        
+                .form-control,
+                .dataTable-input {
+                    display: block;
+                    width: 100%;
+                    padding: 0.875rem 1.125rem;
+                    font-size: 0.875rem;
+                    font-weight: 400;
+                    line-height: 1;
+                    color: #69707a;
+                    background-color: #fff;
+                    background-clip: padding-box;
+                    border: 1px solid #c5ccd6;
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                    appearance: none;
+                    border-radius: 0.35rem;
+                    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+                }
+        
+                .nav-borders .nav-link.active {
+                    color: #0061f2;
+                    border-bottom-color: #0061f2;
+                }
+        
+                .nav-borders .nav-link {
+                    color: #69707a;
+                    border-bottom-width: 0.125rem;
+                    border-bottom-style: solid;
+                    border-bottom-color: transparent;
+                    padding-top: 0.5rem;
+                    padding-bottom: 0.5rem;
+                    padding-left: 0;
+                    padding-right: 0;
+                    margin-left: 1rem;
+                    margin-right: 1rem;
+                }
+            </style>
+            <script type="text/javascript">
+        
+            </script>
+
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+        {% endblock %}

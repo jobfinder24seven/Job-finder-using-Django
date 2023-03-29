@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% load static %}
+    {% block title %}
+    {{title}}
+    {% endblock title %}
+
+{% block content %}
+
+<!--main-->
+<main id="main">
+
+
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Contact</h2>
+          <h3><span>Contact Us</span></h3>
+          <p>Feel Free to Contact Us</p>
+        </div>
+
+        <div class="row" data-aos="fade-up" data-aos-delay="100">
+          <div class="col-lg-6">
+            <div class="info-box mb-4">
+              <i class="bx bx-map"></i>
+              <h3>Our Address</h3>
+              <p>8 Adelabu Street, Alh. Masha, Surulere</p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6">
+            <div class="info-box  mb-4">
+              <i class="bx bx-envelope"></i>
+              <h3>Email Us</h3>
+              <p>jfinder@placement-hub.com</p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6">
+            <div class="info-box  mb-4">
+              <i class="bx bx-phone-call"></i>
+              <h3>Call Us</h3>
+              <p>	+234 807 244 5395</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row" data-aos="fade-up" data-aos-delay="100">
+
+          <div class="col-lg-6 "> 
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.1636310559124!2d3.3479371144220127!3d6.500959125229395!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8c1798cc634b%3A0x7d2fa28b23c578bc!2s8%20Adelabu%20St%2C%20Ikate%20101241%2C%20Lagos!5e0!3m2!1sen!2sng!4v1663257773081!5m2!1sen!2sng" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+
+          <div class="col-lg-6">
+            
+            <form action="{% url 'main:contact' %}" method="post" role="form" >
+              {% csrf_token %}
+              <div class="row">
+                <div class="col form-group">
+                  {% render_field form.full_name class="form-control" placeholder=form.full_name.label %}
+                </div>
+                <div class="col form-group">
+                  {% render_field form.email_address class="form-control" placeholder=form.email_address.label %}
+                </div>
+              </div>
+              <div class="form-group">
+                {% render_field form.subject class="form-control" placeholder=form.subject.label %}
+              </div>
+              <div class="form-group">
+                {% render_field form.message class="form-control" placeholder=form.message.label %}
+              </div>
+              {% comment %} <div class="my-3">
+                <div class="loading">Loading</div>
+                <div class="error-message"></div>
+                <div class="sent-message">Your message has been sent. Thank you!</div>
+              </div> {% endcomment %}
+              <div class="text-center"><button type="submit">Send Message</button></div>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Contact Section -->
+
+</main>
+<!-- End #main -->
+
+{% endblock content %}

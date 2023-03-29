@@ -1,0 +1,288 @@
+{% extends 'dashboard_base.html' %}
+{% load static %}
+    {% block title %}
+       {{title}}
+    {% endblock %}
+
+        {% block content %}
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-xl px-4 mt-4">
+                
+                <hr class="mt-0 mb-4">
+                <div class="row">
+                    <div class="col-lg-6 mb-4">
+        
+                        <div class="card h-100 border-start-lg border-start-primary">
+                            <div class="card-body">
+                                <div class="small text-muted">Current monthly approved bill</div>
+                                {% if employer.payment_verified == 0  %}
+                                <div class="h3">NGN: 0 </div>
+                                {% elif employer.payment_verified == 1 %}
+                                <small>status: <div class="h3" style="color:green;">Approved</div></small>
+                                {% endif %}
+                                {% comment %} {% elif employer.payment_verified ==  %}
+                                    {% if current_payment.amount == effective_in_next_version %}
+                                        <div class="h3" style="color:green;">NGN: {{current_payment.amount}}</div>
+                                        <small><b>Transaction ID</b>: {{current_payment.ref}} </small>
+                                    {% elif current_payment.amount == 10000 %}
+                                        <div class="h3" style="color:green;">NGN: {{current_payment.amount}}</div>
+                                        <small><b>Transaction ID</b>: {{current_payment.ref}} </small>
+                                    {% elif current_payment.amount == 20000 %}
+                                        <div class="h3" style="color:green;">NGN: {{current_payment.amount|add:"10000"}}</div>
+                                        <small><b>Transaction ID</b>: {{current_payment.ref}} </small>
+                                    {% elif current_payment.amount == 30000 %}
+                                        <div class="h3" style="color:green;">NGN: {{current_payment.amount|add:"15000"}}</div>
+                                    {% elif current_payment.amount == 50000 %}
+                                        <div class="h3" style="color:green;">NGN: {{current_payment.amount|add:"25000"}}</div>
+                                        <small><b>Transaction ID</b>: {{current_payment.ref}} </small>
+                                    {% endif %}
+                          
+                                {% endif %} {% endcomment %}
+                                {% comment %} <a class="text-arrow-icon small" href="{% url 'subscriptions:initiate-payment' %}">
+                                    Switch to yearly billing
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="feather feather-arrow-right"> 
+                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                        <polyline points="12 5 19 12 12 19"></polyline>
+                                    </svg>
+                                </a> {% endcomment %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 mb-4">
+        
+                        <div class="card h-100 border-start-lg border-start-secondary">
+                            <div class="card-body">
+                                <div class="small text-muted">Next payment due</div>
+                                {% if employer.next_payment_date %}
+                                    <div class="h4 "  style="color:red;">{{employer.next_payment_date}}</div>
+                                {% else %}
+                                    <p style="color:red;">No active subscription.</p>
+                                {% endif %}
+                                {% comment %} <a class="text-arrow-icon small text-secondary" href="#!">
+                                    View payment history
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="feather feather-arrow-right">
+                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                        <polyline points="12 5 19 12 12 19"></polyline>
+                                    </svg>
+                                </a> {% endcomment %}
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+        
+                <!--<div class="card card-header-actions mb-4">
+                    <div class="card-header">
+                        Payment Methods
+                        <button class="btn btn-sm btn-primary" type="button">Add Payment Method</button>
+                    </div>
+                    <div class="card-body px-0">
+        
+                        <div class="d-flex align-items-center justify-content-between px-4">
+                            <div class="d-flex align-items-center">
+                                <i class="fab fa-cc-visa fa-2x cc-color-visa"></i>
+                                <div class="ms-4">
+                                    <div class="small">Visa ending in 1234</div>
+                                    <div class="text-xs text-muted">Expires 04/2024</div>
+                                </div>
+                            </div>
+                            <div class="ms-4 small">
+                                <div class="badge bg-light text-dark me-3">Default</div>
+                                <a href="#!">Edit</a>
+                            </div>
+                        </div>
+                        <hr>
+        
+                        <div class="d-flex align-items-center justify-content-between px-4">
+                            <div class="d-flex align-items-center">
+                                <i class="fab fa-cc-mastercard fa-2x cc-color-mastercard"></i>
+                                <div class="ms-4">
+                                    <div class="small">Mastercard ending in 5678</div>
+                                    <div class="text-xs text-muted">Expires 05/2022</div>
+                                </div>
+                            </div>
+                            <div class="ms-4 small">
+                                <a class="text-muted me-3" href="#!">Make Default</a>
+                                <a href="#!">Edit</a>
+                            </div>
+                        </div>
+                        <hr>
+        
+                        <div class="d-flex align-items-center justify-content-between px-4">
+                            <div class="d-flex align-items-center">
+                                <i class="fab fa-cc-amex fa-2x cc-color-amex"></i>
+                                <div class="ms-4">
+                                    <div class="small">American Express ending in 9012</div>
+                                    <div class="text-xs text-muted">Expires 01/2026</div>
+                                </div>
+                            </div>
+                            <div class="ms-4 small">
+                                <a class="text-muted me-3" href="#!">Make Default</a>
+                                <a href="#!">Edit</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
+        
+                <div class="card mb-4">
+                    <div class="card-header">Billing History</div>
+                    <div class="card-body p-0">
+        
+                        <div class="table-responsive table-billing-history">
+                            <table class="table mb-0">
+                                <thead>
+                                    <tr>
+                                        <th class="border-gray-200" scope="col">Transaction ID</th>
+                                        <th class="border-gray-200" scope="col">Date</th>
+                                        <th class="border-gray-200" scope="col">Amount</th>
+                                        {% comment %} <th class="border-gray-200" scope="col">Status</th> {% endcomment %}
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for payment in payments %}
+                                    <tr>
+                                        <td>{{payment.ref|urlize|linebreaksbr}}</td>
+                                        <td>{{payment.created_date}}</td>
+                                        <td>NGN {{payment.amount}}</td>
+                                        {% comment %} {% if employer.payment_verified == 0 %}
+                                        <td>
+                                            <span class="label label-rounded label-primary">Pending</span> 
+                                        </td>
+                                        {% elif employer.payment_verified == 1 %}
+                                        <td>
+                                            <span class="label label-success label-rounded">Approved</span>
+                                        </td>
+                                        {% endif %} {% endcomment %}
+                                    </tr>
+                                    {% endfor %}
+                                   
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <style type="text/css">
+                body {
+                    margin-top: 20px;
+                    background-color: #f2f6fc;
+                    color: #69707a;
+                }
+        
+                .img-account-profile {
+                    height: 10rem;
+                }
+        
+                .rounded-circle {
+                    border-radius: 50% !important;
+                }
+        
+                .card {
+                    box-shadow: 0 0.15rem 1.75rem 0 rgb(33 40 50 / 15%);
+                }
+        
+                .card .card-header {
+                    font-weight: 500;
+                }
+        
+                .card-header:first-child {
+                    border-radius: 0.35rem 0.35rem 0 0;
+                }
+        
+                .card-header {
+                    padding: 1rem 1.35rem;
+                    margin-bottom: 0;
+                    background-color: rgba(33, 40, 50, 0.03);
+                    border-bottom: 1px solid rgba(33, 40, 50, 0.125);
+                }
+        
+                .form-control,
+                .dataTable-input {
+                    display: block;
+                    width: 100%;
+                    padding: 0.875rem 1.125rem;
+                    font-size: 0.875rem;
+                    font-weight: 400;
+                    line-height: 1;
+                    color: #69707a;
+                    background-color: #fff;
+                    background-clip: padding-box;
+                    border: 1px solid #c5ccd6;
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                    appearance: none;
+                    border-radius: 0.35rem;
+                    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+                }
+        
+                .nav-borders .nav-link.active {
+                    color: #0061f2;
+                    border-bottom-color: #0061f2;
+                }
+        
+                .nav-borders .nav-link {
+                    color: #69707a;
+                    border-bottom-width: 0.125rem;
+                    border-bottom-style: solid;
+                    border-bottom-color: transparent;
+                    padding-top: 0.5rem;
+                    padding-bottom: 0.5rem;
+                    padding-left: 0;
+                    padding-right: 0;
+                    margin-left: 1rem;
+                    margin-right: 1rem;
+                }
+        
+                .fa-2x {
+                    font-size: 2em;
+                }
+        
+                .table-billing-history th,
+                .table-billing-history td {
+                    padding-top: 0.75rem;
+                    padding-bottom: 0.75rem;
+                    padding-left: 1.375rem;
+                    padding-right: 1.375rem;
+                }
+        
+                .table> :not(caption)>*>*,
+                .dataTable-table> :not(caption)>*>* {
+                    padding: 0.75rem 0.75rem;
+                    background-color: var(--bs-table-bg);
+                    border-bottom-width: 1px;
+                    box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);
+                }
+        
+                .border-start-primary {
+                    border-left-color: #0061f2 !important;
+                }
+        
+                .border-start-secondary {
+                    border-left-color: #6900c7 !important;
+                }
+        
+                .border-start-success {
+                    border-left-color: #00ac69 !important;
+                }
+        
+                .border-start-lg {
+                    border-left-width: 0.25rem !important;
+                }
+        
+                .h-100 {
+                    height: 100% !important;
+                }
+            </style>
+            <script type="text/javascript">
+        
+            </script>
+
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+        {% endblock %}

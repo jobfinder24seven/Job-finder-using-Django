@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+    {% block title %}
+    {{title}} 
+    {% endblock %}
+{% block content %}
+{% include 'accounts_css.html' %}
+<div id="footer"  >
+    <div width="100%" class="footer-newsletter">
+       <div width="100%" class="container">
+         <div width="100%" class="row justify-content-center">
+           <div class="col-lg-6">
+             <h4>Create a Job seeker Account on JobFinder</h4>
+             <p></p>
+             
+             <form action="{% url 'accounts:signup-action' %}" method="POST">
+              {% csrf_token %} 
+              <div width="100%" id="login-box">
+   <div class="left">
+     <h1>Sign up</h1>
+     
+     <input type="hideen" name="user_type" value="300"/>
+                  <input type="text" name='first_name' id="first_name" placeholder="First Name" />
+                  <input type="text" name='last_name' id="last_name" placeholder="Last Name" />
+                  <input type="text" name='email_id' id="email_id" placeholder="E-mail" />
+                  <input type="number" name='phone_number' id="phone" placeholder="Phone" onKeyPress="if(this.value.length==11) return false;" />
+                  <input type="password" name='password' id="password" placeholder="Password" />
+                  <input type="password" name='confirm_password' id="password" placeholder="Confirm Password" />
+                  <input type="checkbox" name='is_accept_tcs' id="tcs" value="1"/>
+                  <label for="tcs">I accept the <u>Ts & Cs</u></label><br>
+ 
+  <button class="social-signin google" type="submit" name='submit'  id="submit" value="Submit"  style="background-color: #106eea;">Submit</button>
+  <p style="font-size: 12px;">If you have an account aready; <a href="{% url 'accounts:login' %}">Login here</a></p>
+   </div>
+    
+   <div class="right" style="background: linear-gradient(60deg, #d476dd 20%,  #106eea 80.1%); text-align: center;">
+    <div style="margin-top: 130px;">
+       <h2 style="font-size: 25px; color:#fff;">You are welcome!</h2>
+    
+   <p style="font-size: 18px; color:#fff;">Feel free to signup with us</p> 
+    </div>
+     
+   
+ </div>
+ 
+             </form>
+           </div>
+         </div>
+       </div>
+     </div>
+ </div>
+ 
+{% endblock %}
+
+{% block footer %}
+{% endblock footer %}

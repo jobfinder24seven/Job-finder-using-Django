@@ -1,0 +1,308 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+  {{title}}
+{% endblock %}
+
+{% block content %}
+<style>
+    @media only screen and (min-width: 768px) {
+      .candidate-started {
+        margin-left: 0px;
+      }
+    }
+  </style>
+  
+  <main id="main" data-aos="fade-up">
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about section-bg" style="background-color: #d476dd;">
+      <div class="container" data-aos="fade-up">
+        <div class="row">
+  
+          <div class="col-lg-6 pt-4 pt-lg-0 content d-flex flex-column justify-content-center" data-aos="fade-up"
+            data-aos-delay="100">
+            <h3 style="color: #fff; font-size: 35px; line-height: 50px;">Get The Right Employee For Your Business with our
+              Featured <br>Job Posting</h3>
+            <p class="fst-italic" style="color: #fff; font-size: 18px; ">
+              JobFinder featured job posting is for recruiters that want to get the best from their job postings
+            </p>
+            <p style="background-color:#e7f1fd; width: 200px; height: 40px; font-size: 22px;">&nbsp;&nbsp;₦5,000 / Job
+              Title</p>
+            <div class="d-flex">
+              <a href="{% url 'accounts:employer-signup' %}" class="btn-get-started btn btn-primary scrollto"
+                style=" width: 200px; height: 40px; font-size: 22px;">Get Started</a>
+  
+            </div>
+          </div>
+  
+  
+  
+        </div>
+  
+      </div>
+    </section><!-- End About Section -->
+  
+  
+  
+    <!-- ======= Portfolio Details Section ======= -->
+    <section id="portfolio-details" class="portfolio-details">
+      <div class="container">
+        <div style="text-align: center;">
+          <h3 style="color:#d476dd;">Benefit </h3>
+          <p>Benefit you will enjoy with our paid job posting </p>
+  
+        </div>
+  
+        <div class="row gy-4">
+  
+  
+  
+          <section id="portfolio-details" class="portfolio-details" style="background-color: #fff;">
+            <div class="container">
+  
+              <div class="row gy-4">
+                <div class="col-lg-12">
+                  <div class="row">
+                    <div class="col-lg-4">
+                      <div class="portfolio-info">
+                        <h3>Custom Screening Questions</h3>
+                        <div>
+  
+  
+                          <p>
+                            Our screening/assessment feature enables you to filter qualified candidates for your job
+                            advert.
+                          </p>
+                        </div>
+  
+                      </div>
+                    </div>
+                    <div class="col-lg-4">
+                      <div class="portfolio-info">
+                        <h3>Increased Visibility</h3>
+                        <div>
+  
+  
+                          <p>
+                            With featured job posting, you get x3 visibility on your job advert as we will feature it on
+                            our website home page plus other premium locations.
+  
+                          </p>
+                        </div>
+  
+                      </div>
+                    </div>
+                    <div class="col-lg-4">
+                      <div class="portfolio-info">
+                        <h3> Application Management</h3>
+                        <div>
+  
+  
+                          <p>
+  
+                            Our dashboard is designed to be flexible in which you can create custom profiles and keep an
+                            updated list of candidates, you can also filter applications based on location, education and
+                            experience.
+  
+  
+                          </p>
+                        </div>
+  
+                      </div>
+                    </div>
+  
+  
+                  </div>
+  
+                </div>
+              </div>
+  
+            </div>
+  
+  
+          </section>
+          <section id="portfolio-details" class="portfolio-details" style="background-color: #fff;">
+            <div class="container">
+  
+              <div class="row gy-4">
+                <div class="col-lg-12">
+                  <div class="row">
+                    <div class="col-lg-4">
+                      <div class="portfolio-info">
+                        <h3>Flexibity</h3>
+                        <div>
+  
+  
+                          <p>
+                            We provide an online job board with a low cost per job post. We are the premier place to find
+                            your next talented employee.
+  
+  
+                          </p>
+                        </div>
+  
+                      </div>
+                    </div>
+                    <div class="col-lg-4">
+                      <div class="portfolio-info">
+                        <h3>Speed</h3>
+                        <div>
+  
+  
+                          <p>
+                            You enjoy 60 minutes response time for your job postings on weekdays.
+  
+                          </p>
+                        </div>
+  
+                      </div>
+                    </div>
+                    <div class="col-lg-4">
+                      <div class="portfolio-info">
+                        <h3> Improved Candidate Quality</h3>
+                        <div>
+                          <p>
+                            We use algorithms and data analysis to identify the best candidates in all levels of
+                            employment thereby, ensuring you’re only reviewing the top 3% of applicants with skills and
+                            experience that are a perfect match for your open position.
+                          </p>
+                        </div>
+  
+                      </div>
+                    </div>
+  
+  
+                  </div>
+  
+                </div>
+              </div>
+  
+            </div>
+  
+  
+          </section>
+          <!-- End Portfolio Details Section -->
+  
+          <section>
+            <div id="footer" style="margin-top: -60px;">
+  
+              <div class="footer-newsletter" style="background: linear-gradient(30deg, #d476dd 20%, #106eea 80.1%);">
+                <div class="container">
+                  <div class="row justify-content-center">
+                    <div class="col-lg-6">
+  
+                      <div class="candidate-started">
+                        <div class="d-flex" style="color: #fff;">You will be creating an account. ( For more enquires call
+                          - +234 807 244 5395)
+                          <a href="{% url 'accounts:employer-signup' %}" class="btn-get-started btn btn-light scrollto"
+                            style=" width: 60%; color: #000;border-radius: 40px">Get Started</a>
+  
+                        </div>
+  
+                      </div>
+  
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+  
+  
+          <!-- ======= Frequently Asked Questions Section ======= -->
+          <section id="faq" class="faq section-bg" style="margin-top: -90px;">
+            <div class="container" data-aos="fade-up">
+  
+              <div class="section-title">
+                <h2>F.A.Q</h2>
+                <h3>Frequently Asked <span>Questions</span></h3>
+  
+              </div>
+  
+              <div class="row justify-content-center">
+                <div class="col-xl-10">
+                  <ul class="faq-list">
+  
+                    <li>
+                      <div data-bs-toggle="collapse" class="collapsed question" href="#faq1">How does JobFinder help me to
+                        recruit candidates?<i class="bi bi-chevron-down icon-show"></i><i
+                          class="bi bi-chevron-up icon-close"></i></div>
+                      <div id="faq1" class="collapse" data-bs-parent=".faq-list">
+                        <p>
+                          The main goal of Job Finder is to provide a platform that both employers and potential
+                          candidates can use to share information. You can post jobs and recruit the best candidates for
+                          your company. Job seekers can also find positions tailored to their skills, have access to
+                          resumé writing assistance, job coaching, onboarding and more!
+                        </p>
+                      </div>
+                    </li>
+  
+                    <li>
+                      <div data-bs-toggle="collapse" href="#faq2" class="collapsed question">Which industries do you
+                        recruit for?<i class="bi bi-chevron-down icon-show"></i><i
+                          class="bi bi-chevron-up icon-close"></i></div>
+                      <div id="faq2" class="collapse" data-bs-parent=".faq-list">
+                        <p>
+                          We recruit across industries and boundaries. This is because we have a team of recruiters who
+                          are specialists in different industries and niches.
+                        </p>
+                      </div>
+                    </li>
+  
+                    <li>
+                      <div data-bs-toggle="collapse" href="#faq3" class="collapsed question">Do you provide permanent or
+                        temporary placements? <i class="bi bi-chevron-down icon-show"></i><i
+                          class="bi bi-chevron-up icon-close"></i></div>
+                      <div id="faq3" class="collapse" data-bs-parent=".faq-list">
+                        <p>
+                          We help businesses to recruit both permanent and temporary staff.
+                        </p>
+                      </div>
+                    </li>
+  
+                    <li>
+                      <div data-bs-toggle="collapse" href="#faq4" class="collapsed question">Is your agency an equal
+                        opportunity employer? <i class="bi bi-chevron-down icon-show"></i><i
+                          class="bi bi-chevron-up icon-close"></i></div>
+                      <div id="faq4" class="collapse" data-bs-parent=".faq-list">
+                        <p>
+                          Yes, we don’t discriminate based on age, race, or gender.
+                        </p>
+                      </div>
+                    </li>
+  
+                    <li>
+                      <div data-bs-toggle="collapse" href="#faq5" class="collapsed question">As a company why should I use
+                        your recruitment company to find talent?<i class="bi bi-chevron-down icon-show"></i><i
+                          class="bi bi-chevron-up icon-close"></i></div>
+                      <div id="faq5" class="collapse" data-bs-parent=".faq-list">
+                        <p>
+                          We have a recruitment team that will guide you and help you during the whole process. With us,
+                          your recruitment needs become better defined. The process is completely tailored to build the
+                          team that will make your company thrive.
+                        </p>
+                      </div>
+                    </li>
+  
+                    <li>
+                      <div data-bs-toggle="collapse" href="#faq6" class="collapsed question">Can your agency help me hire
+                        expatriates?<i class="bi bi-chevron-down icon-show"></i><i
+                          class="bi bi-chevron-up icon-close"></i></div>
+                      <div id="faq6" class="collapse" data-bs-parent=".faq-list">
+                        <p>
+                          Yes, we help businesses and companies hire expatriates. You can place your request here and a
+                          consultant will get in touch with you
+                        </p>
+                      </div>
+                    </li>
+  
+                  </ul>
+                </div>
+              </div>
+  
+            </div>
+          </section><!-- End Frequently Asked Questions Section -->
+  
+  </main><!-- End #main -->
+  ]
+{% endblock %}

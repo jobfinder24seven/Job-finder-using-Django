@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+    {% block title %}
+    Login
+    {% endblock %}
+{% block content %}
+{% include 'accounts_css.html' %}
+<div id="footer">
+    <div class="footer-newsletter">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-6">
+            <h4>Login</h4>
+  
+            <form action="{% url 'accounts:login-action' %}" method="POST" class="form-group" width="100%">
+              {% csrf_token %}
+              <div id="login-box">
+  
+                <div class="right">
+                  <div class="right"
+                    style="background: linear-gradient(60deg, #d476dd 20%,  #106eea 80.1%); text-align: center;">
+                    <div style="margin-top: 130px;">
+                      <h2 style="font-size: 25px; color:#fff;">Not a member yet?</h2>
+  
+                      <p style="font-size: 17px; color:#fff;">Feel free to &nbsp;&nbsp;<a href="{% url 'accounts:signup' %}"
+                          style="text-decoration: underline; color: white;">Sign up</a> with us</p>
+                    </div>
+  
+  
+                  </div>
+  
+                </div>
+                <div class="left">
+  
+                  <h1>Sign in</h1>
+  
+  
+                  <input type="text" name='email_id' placeholder="E-mail" />
+                  <input type="password" name='password' placeholder="Password" />
+  
+  
+                  <button class="social-signin google" type="submit" name='submit' value="Submit"
+                    style="background-color: #106eea;">Submit</button>
+  
+                  <p style="font-size: 14px;">Forgot your password?&nbsp;&nbsp;<a href="{% url 'accounts:password-recovery' %}">Click here</a></p>
+  
+                </div>
+  
+                <div class="or">OR</div>
+  
+              </div>
+  
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+{% endblock %}
+
+{% block footer %}
+{% endblock footer %}

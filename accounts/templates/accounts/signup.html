@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+    {% block title %}
+    {{title}} 
+    {% endblock %}
+{% block content %}
+{% include 'accounts_css.html' %}
+<div id="footer" style="background: linear-gradient(60deg, #E7F1FD 20%,  #6610f2 80.1%);" >
+  <div class="footer-newsletter">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-6">
+          {% if sub %}
+          Congrats, your email has been reactivated to receive job alert
+          {% endif %}
+          <h1>Create Account</h1>
+              <div id="login-box">
+                <div class="left">
+                  <button class="social-signin twitter"><a href="{% url 'accounts:jobseeker-signup' %}"  style=" color:#fff;">Jobseeker</a></button>
+                  <a href="{% url 'accounts:jobseeker-signup' %}">
+                    <img src="https://img.icons8.com/external-flaticons-lineal-color-flat-icons/64/null/external-job-seeker-resume-flaticons-lineal-color-flat-icons.png"  class="img-circle circle-border m-b-md"/>
+                  </a>
+                  <p>Are you looking for your dream job?
+                    Create a unique career profile with Jobfinder</p>
+                  
+                </div>
+                <div class="right">
+                  <button class="social-signin google"><a href="{% url 'accounts:employer-signup' %}" style=" color:#fff;">Employer</a></button>
+                  <a href="{% url 'accounts:employer-signup' %}">
+                    <img src="https://img.icons8.com/external-flaticons-lineal-color-flat-icons/64/null/external-employers-back-to-work-flaticons-lineal-color-flat-icons.png" class="img-circle circle-border m-b-md"/>
+                  </a>
+                  <p>Are you looking for quality candidates?
+                    Advertise and search with Jobfinder </p>
+                  
+                </div>
+                
+              </div>
+          <p style="font-size: 18px;">If you have an account aready; <a href="{% url 'accounts:login' %}">Login here</a></p>
+        </div>
+      </div>
+    </div>
+</div> 
+{% endblock %}
+
+{% block footer %}
+{% endblock footer %}
